@@ -1006,7 +1006,7 @@ std::string setAddonOptions()
 	docToValue(dualDirectionalOptions.fourWayMode, doc, "dualDirFourWayMode");
 	docToValue(dualDirectionalOptions.enabled, doc, "DualDirectionalInputEnabled");
 
-	TiltOptions& tiltOptions = Storage::getInstance().getAddonOptions().tiltOptions;
+		TiltOptions& tiltOptions = Storage::getInstance().getAddonOptions().tiltOptions;
 	docToPin(tiltOptions.tilt1Pin, doc, "tilt1Pin");
 	docToValue(tiltOptions.factorTilt1LeftX, doc, "factorTilt1LeftX");
 	docToValue(tiltOptions.factorTilt1LeftY, doc, "factorTilt1LeftY");
@@ -1442,7 +1442,7 @@ std::string getAddonOptions()
 	writeDoc(doc, "dualDirFourWayMode", dualDirectionalOptions.fourWayMode);
 	writeDoc(doc, "DualDirectionalInputEnabled", dualDirectionalOptions.enabled);
 
-	const TiltOptions& tiltOptions = Storage::getInstance().getAddonOptions().tiltOptions;
+		const TiltOptions& tiltOptions = Storage::getInstance().getAddonOptions().tiltOptions;
 	writeDoc(doc, "tilt1Pin", cleanPin(tiltOptions.tilt1Pin));
 	writeDoc(doc, "factorTilt1LeftX", tiltOptions.factorTilt1LeftX);
 	writeDoc(doc, "factorTilt1LeftY", tiltOptions.factorTilt1LeftY);

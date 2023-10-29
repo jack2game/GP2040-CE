@@ -189,12 +189,12 @@ private:
 	uint8_t pinRotate1;
 	uint8_t pinRotate2;
 	uint16_t rotate1FactorLeft;
-    uint16_t rotate2FactorLeft;
+	uint16_t rotate2FactorLeft;
 	uint16_t rotate3FactorLeft;
 	uint16_t rotate4FactorLeft;
 	uint16_t rotate5FactorLeft;
 	uint16_t rotate6FactorLeft;
-    uint16_t rotate1FactorRight;
+	uint16_t rotate1FactorRight;
 	uint16_t rotate2FactorRight;
 	uint16_t rotate3FactorRight;
 	uint16_t rotate4FactorRight;
