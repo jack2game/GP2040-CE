@@ -109,6 +109,8 @@ export default {
 	'rotate-4-factor-right-label': 'Rotate 4 Degree Right',
 	'rotate-5-factor-right-label': 'Rotate 5 Degree Right',
 	'rotate-6-factor-right-label': 'Rotate 6 Degree Right',
+	'tilt-rotate-1-then-2-mode': 'Tilt/Rotate 1 then 2 Mode',
+	'tilt-rotate-2-then-1-mode': 'Tilt/Rotate 2 then 1 Mode',
 	'buzzer-speaker-header-text': 'Buzzer Speaker',
 	'buzzer-speaker-pin-label': 'Buzzer Pin',
 	'buzzer-speaker-volume-label': 'Buzzer Volume',

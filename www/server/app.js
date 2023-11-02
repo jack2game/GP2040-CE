@@ -406,6 +406,8 @@ app.get('/api/getAddonsOptions', (req, res) => {
 		factorRotate4Right: 0,
 		factorRotate5Right: 0,
 		factorRotate6Right: 0,
+		tiltRotate1Then2Mode: 0,
+		tiltRotate2Then1Mode: 0,
 		analogAdc1PinX: -1,
 		analogAdc1PinY: -1,
 		analogAdc1Mode: 1,

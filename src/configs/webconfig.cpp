@@ -1027,6 +1027,8 @@ std::string setAddonOptions()
 	docToValue(tiltOptions.factorRotate4Right, doc, "factorRotate4Right");
 	docToValue(tiltOptions.factorRotate5Right, doc, "factorRotate5Right");
 	docToValue(tiltOptions.factorRotate6Right, doc, "factorRotate6Right");
+	docToValue(tiltOptions.tiltRotate1Then2Mode, doc, "tiltRotate1Then2Mode");
+	docToValue(tiltOptions.tiltRotate2Then1Mode, doc, "tiltRotate2Then1Mode");
 	docToValue(tiltOptions.enabled, doc, "TiltInputEnabled");
 
     FocusModeOptions& focusModeOptions = Storage::getInstance().getAddonOptions().focusModeOptions;
@@ -1458,6 +1460,8 @@ std::string getAddonOptions()
 	writeDoc(doc, "factorRotate4Right", tiltOptions.factorRotate4Right);
 	writeDoc(doc, "factorRotate5Right", tiltOptions.factorRotate5Right);
 	writeDoc(doc, "factorRotate6Right", tiltOptions.factorRotate6Right);
+	writeDoc(doc, "tiltRotate1Then2Mode", tiltOptions.tiltRotate1Then2Mode);
+	writeDoc(doc, "tiltRotate2Then1Mode", tiltOptions.tiltRotate2Then1Mode);
 	writeDoc(doc, "TiltInputEnabled", tiltOptions.enabled);
 
     const AnalogADS1219Options& analogADS1219Options = Storage::getInstance().getAddonOptions().analogADS1219Options;
