@@ -448,7 +448,10 @@ message TiltOptions
 	optional int32 factorRotate6Right =  35;
 	
 	optional SOCDMode tiltLeftSOCDMode = 36;
-	optional SOCDMode tiltRightSOCDMode = 37;	
+	optional SOCDMode tiltRightSOCDMode = 37;
+	
+	optional DpadMode tiltRotate1Then2Mode = 38;
+	optional DpadMode tiltRotate2Then1Mode = 39;
 }
 
 message BuzzerOptions
