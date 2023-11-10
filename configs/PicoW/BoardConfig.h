@@ -235,7 +235,6 @@
 // TILTAdd-on Options
 #define PIN_TILT_1 -1
 #define PIN_TILT_2 -1
-#define PIN_TILT_FUNCTION -1
 #define PIN_TILT_LEFT_ANALOG_UP -1
 #define PIN_TILT_LEFT_ANALOG_DOWN -1
 #define PIN_TILT_LEFT_ANALOG_LEFT -1
@@ -298,7 +297,7 @@
 #define KEYBOARD_HOST_PIN_DPLUS -1
 #define KEYBOARD_HOST_PIN_5V -1
 
-// For details on this, see: https://gp2040-ce.info/#/development?id=i2c-display-splash
+// For details on this, see: https://gp2040-ce.info/development/firmware-development#i2c-display-splash
 #define DEFAULT_SPLASH \
     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, \
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, \
