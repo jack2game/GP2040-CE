@@ -8,6 +8,7 @@ import FormSelect from '../Components/FormSelect';
 
 import FormControl from '../Components/FormControl';
 import { SOCD_MODES, TILT_SOCD_MODES } from '../Data/Addons';
+import { DPAD_MODES } from '../Data/Addons';
 
 export const tiltScheme = {
 	TiltInputEnabled: yup.number().required().label('Tilt Input Enabled'),
