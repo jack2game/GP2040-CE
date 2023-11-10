@@ -273,6 +273,8 @@
 #define ROTATE6_FACTOR_RIGHT 0   //Default value for the ROTATE button to function.
 #define TILT_LEFT_SOCD_MODE SOCD_MODE_NEUTRAL
 #define TILT_RIGHT_SOCD_MODE SOCD_MODE_NEUTRAL
+#define TILT_ROTATE_1_THEN_2_MODE DPAD_MODE_DIGITAL
+#define TILT_ROTATE_2_THEN_1_MODE DPAD_MODE_DIGITAL
 
 // BOOTSEL Button Add-on setting
 #define BOOTSEL_BUTTON_MASK 0 // 0 means none, get other mask from GamepadState.h
