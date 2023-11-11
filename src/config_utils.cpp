@@ -454,6 +454,10 @@ void ConfigUtils::initUnsetPropertiesWithDefaults(Config& config)
     INIT_UNSET_PROPERTY(config.addonOptions.tiltOptions, factorRotate4Right, ROTATE4_FACTOR_RIGHT);
     INIT_UNSET_PROPERTY(config.addonOptions.tiltOptions, factorRotate5Right, ROTATE5_FACTOR_RIGHT);
     INIT_UNSET_PROPERTY(config.addonOptions.tiltOptions, factorRotate6Right, ROTATE6_FACTOR_RIGHT);
+    INIT_UNSET_PROPERTY(config.addonOptions.tiltOptions, tilt1Then2Mode, TILT_1_THEN_2_MODE);
+    INIT_UNSET_PROPERTY(config.addonOptions.tiltOptions, tilt2Then1Mode, TILT_2_THEN_1_MODE);
+    INIT_UNSET_PROPERTY(config.addonOptions.tiltOptions, rotate1Then2Mode, ROTATE_1_THEN_2_MODE);
+    INIT_UNSET_PROPERTY(config.addonOptions.tiltOptions, rotate2Then1Mode, ROTATE_2_THEN_1_MODE);
 
     // addonOptions.buzzerOptions
     INIT_UNSET_PROPERTY(config.addonOptions.buzzerOptions, enabled, !!BUZZER_ENABLED);

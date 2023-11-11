@@ -8,6 +8,7 @@ import FormSelect from '../Components/FormSelect';
 
 import FormControl from '../Components/FormControl';
 import { SOCD_MODES, TILT_SOCD_MODES } from '../Data/Addons';
+import { DPAD_MODES } from '../Data/Addons';
 
 export const tiltScheme = {
 	TiltInputEnabled: yup.number().required().label('Tilt Input Enabled'),
@@ -147,6 +148,22 @@ export const tiltScheme = {
 		.number()
 		.label('Tilt Right Stick SOCD Mode')
 		.validateSelectionWhenValue('TiltInputEnabled', TILT_SOCD_MODES),
+	tilt1Then2Mode: yup
+		.number()
+		.label('Tilt 1 then 2 Mode')
+		.validateSelectionWhenValue('TiltInputEnabled', DPAD_MODES),
+	tilt2Then1Mode: yup
+		.number()
+		.label('Tilt 2 then 1 Mode')
+		.validateSelectionWhenValue('TiltInputEnabled', DPAD_MODES),
+	rotate1Then2Mode: yup
+		.number()
+		.label('Rotate 1 then 2 Mode')
+		.validateSelectionWhenValue('TiltInputEnabled', DPAD_MODES),
+	rotate2Then1Mode: yup
+		.number()
+		.label('Rotate 2 then 1 Mode')
+		.validateSelectionWhenValue('TiltInputEnabled', DPAD_MODES),
 };
 
 export const tiltState = {
@@ -625,7 +642,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						label={t('AddonsConfig:tilt-left-socd-mode-label')}
 						name="tiltLeftSOCDMode"
 						className="form-select-sm"
-						groupClassName="col-sm-3 mb-3"
+						groupClassName="col-sm-2 mb-3"
 						value={values.tiltLeftSOCDMode}
 						error={errors.tiltLeftSOCDMode}
 						isInvalid={errors.tiltLeftSOCDMode}
@@ -641,7 +658,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						label={t('AddonsConfig:tilt-right-socd-mode-label')}
 						name="tiltRightSOCDMode"
 						className="form-select-sm"
-						groupClassName="col-sm-3 mb-3"
+						groupClassName="col-sm-2 mb-3"
 						value={values.tiltRightSOCDMode}
 						error={errors.tiltRightSOCDMode}
 						isInvalid={errors.tiltRightSOCDMode}
@@ -649,6 +666,70 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 					>
 						{TILT_SOCD_MODES.map((o, i) => (
 							<option key={`button-tiltRightSOCDMode-option-${i}`} value={o.value}>
+								{o.label}
+							</option>
+						))}
+					</FormSelect>
+					<FormSelect
+						label={t('AddonsConfig:tilt-1-then-2-mode')}
+						name="tilt1Then2Mode"
+						className="form-select-sm"
+						groupClassName="col-sm-2 mb-3"
+						value={values.tilt1Then2Mode}
+						error={errors.tilt1Then2Mode}
+						isInvalid={errors.tilt1Then2Mode}
+						onChange={handleChange}
+					>
+						{DPAD_MODES.map((o, i) => (
+							<option key={`button-tilt1Then2Mode-option-${i}`} value={o.value}>
+								{o.label}
+							</option>
+						))}
+					</FormSelect>
+					<FormSelect
+						label={t('AddonsConfig:tilt-2-then-1-mode')}
+						name="tilt2Then1Mode"
+						className="form-select-sm"
+						groupClassName="col-sm-2 mb-3"
+						value={values.tilt2Then1Mode}
+						error={errors.tilt2Then1Mode}
+						isInvalid={errors.tilt2Then1Mode}
+						onChange={handleChange}
+					>
+						{DPAD_MODES.map((o, i) => (
+							<option key={`button-tilt2Then1Mode-option-${i}`} value={o.value}>
+								{o.label}
+							</option>
+						))}
+					</FormSelect>
+					<FormSelect
+						label={t('AddonsConfig:rotate-1-then-2-mode')}
+						name="rotate1Then2Mode"
+						className="form-select-sm"
+						groupClassName="col-sm-2 mb-3"
+						value={values.rotate1Then2Mode}
+						error={errors.rotate1Then2Mode}
+						isInvalid={errors.rotate1Then2Mode}
+						onChange={handleChange}
+					>
+						{DPAD_MODES.map((o, i) => (
+							<option key={`button-rotate1Then2Mode-option-${i}`} value={o.value}>
+								{o.label}
+							</option>
+						))}
+					</FormSelect>
+					<FormSelect
+						label={t('AddonsConfig:rotate-2-then-1-mode')}
+						name="rotate2Then1Mode"
+						className="form-select-sm"
+						groupClassName="col-sm-2 mb-3"
+						value={values.rotate2Then1Mode}
+						error={errors.rotate2Then1Mode}
+						isInvalid={errors.rotate2Then1Mode}
+						onChange={handleChange}
+					>
+						{DPAD_MODES.map((o, i) => (
+							<option key={`button-rotate2Then1Mode-option-${i}`} value={o.value}>
 								{o.label}
 							</option>
 						))}

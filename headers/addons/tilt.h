@@ -145,6 +145,22 @@
 #define TILT_RIGHT_SOCD_MODE SOCD_MODE_NEUTRAL
 #endif
 
+#ifndef TILT_1_THEN_2_MODE
+#define TILT_1_THEN_2_MODE DPAD_MODE_DIGITAL
+#endif
+
+#ifndef TILT_2_THEN_1_MODE
+#define TILT_2_THEN_1_MODE DPAD_MODE_DIGITAL
+#endif
+
+#ifndef ROTATE_1_THEN_2_MODE
+#define ROTATE_1_THEN_2_MODE DPAD_MODE_DIGITAL
+#endif
+
+#ifndef ROTATE_2_THEN_1_MODE
+#define ROTATE_2_THEN_1_MODE DPAD_MODE_DIGITAL
+#endif
+
 // Tilt Module Name
 #define TiltName "Tilt"
 
@@ -202,6 +218,12 @@ private:
 	uint16_t rotate6FactorRight;
 	SOCDMode tiltLeftSOCDMode;
 	SOCDMode tiltRightSOCDMode;
+	DpadMode tilt1Then2Mode;
+	DpadMode tilt2Then1Mode;
+	DpadMode rotate1Then2Mode;
+	DpadMode rotate2Then1Mode;
+	bool last1button;
+	bool last2button;
 };
 
 #endif  // _Tilt_H
