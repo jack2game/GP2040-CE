@@ -46,8 +46,10 @@ void TiltInput::setup() {
 	rotate4FactorRight = options.factorRotate4Right;
 	rotate5FactorRight = options.factorRotate5Right;
 	rotate6FactorRight = options.factorRotate6Right;
-	tiltRotate1Then2Mode = options.tiltRotate1Then2Mode;
-	tiltRotate2Then1Mode = options.tiltRotate2Then1Mode;
+	tilt1Then2Mode = options.tilt1Then2Mode;
+	tilt2Then1Mode = options.tilt2Then1Mode;
+	rotate1Then2Mode = options.rotate1Then2Mode;
+	rotate2Then1Mode = options.rotate2Then1Mode;
 
 
 	// Setup Tilt Key
@@ -220,10 +222,10 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 	  uint8_t input_mode = gamepad->getOptions().inputMode;
 	  uint16_t joystickMid = GetJoystickMidValue(input_mode);
 
-	// (Tilt1+Tilt2 or Rotate1+Rotate2) = Selected Mode
-    if ((pinTilt1Pressed && pinTilt2Pressed && !pinRotate1Pressed && !pinRotate2Pressed) || (!pinTilt1Pressed && !pinTilt2Pressed && pinRotate1Pressed && pinRotate2Pressed)) {
+	// (Tilt1+Tilt2) = Selected Mode
+    if (pinTilt1Pressed && pinTilt2Pressed && !pinRotate1Pressed && !pinRotate2Pressed) {
 		if (last1button){
-			switch (tiltRotate1Then2Mode){
+			switch (tilt1Then2Mode){
 			case (DPAD_MODE_LEFT_ANALOG):
 				gamepad->state.lx = dpadToAnalogX(gamepad->state.dpad|dpad1|dpad2, input_mode);
 				gamepad->state.ly = dpadToAnalogY(gamepad->state.dpad|dpad1|dpad2, input_mode);
@@ -248,7 +250,7 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 			}
 		}
 		else if (last2button){
-			switch (tiltRotate2Then1Mode){
+			switch (tilt2Then1Mode){
 			case (DPAD_MODE_LEFT_ANALOG):
 				gamepad->state.lx = dpadToAnalogX(gamepad->state.dpad|dpad1|dpad2, input_mode);
 				gamepad->state.ly = dpadToAnalogY(gamepad->state.dpad|dpad1|dpad2, input_mode);
@@ -272,7 +274,60 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 				break;
 			}
 		}
-
+    }
+	
+	// (Rotate1+Rotate2) = Selected Mode
+    if (!pinTilt1Pressed && !pinTilt2Pressed && pinRotate1Pressed && pinRotate2Pressed) {
+		if (last1button){
+			switch (rotate1Then2Mode){
+			case (DPAD_MODE_LEFT_ANALOG):
+				gamepad->state.lx = dpadToAnalogX(gamepad->state.dpad|dpad1|dpad2, input_mode);
+				gamepad->state.ly = dpadToAnalogY(gamepad->state.dpad|dpad1|dpad2, input_mode);
+				gamepad->state.dpad = 0;
+				gamepad->state.rx = joystickMid;
+				gamepad->state.ry = joystickMid;
+				break;
+			case (DPAD_MODE_RIGHT_ANALOG):
+				gamepad->state.rx = dpadToAnalogX(gamepad->state.dpad|dpad1|dpad2, input_mode);
+				gamepad->state.ry = dpadToAnalogY(gamepad->state.dpad|dpad1|dpad2, input_mode);
+				gamepad->state.dpad = 0;
+				gamepad->state.lx = joystickMid;
+				gamepad->state.ly = joystickMid;
+				break;
+			default:
+				gamepad->state.dpad |= dpad1|dpad2;
+				gamepad->state.lx = joystickMid;
+				gamepad->state.ly = joystickMid;
+				gamepad->state.rx = joystickMid;
+				gamepad->state.ry = joystickMid;
+				break;
+			}
+		}
+		else if (last2button){
+			switch (rotate2Then1Mode){
+			case (DPAD_MODE_LEFT_ANALOG):
+				gamepad->state.lx = dpadToAnalogX(gamepad->state.dpad|dpad1|dpad2, input_mode);
+				gamepad->state.ly = dpadToAnalogY(gamepad->state.dpad|dpad1|dpad2, input_mode);
+				gamepad->state.dpad = 0;
+				gamepad->state.rx = joystickMid;
+				gamepad->state.ry = joystickMid;
+				break;
+			case (DPAD_MODE_RIGHT_ANALOG):
+				gamepad->state.rx = dpadToAnalogX(gamepad->state.dpad|dpad1|dpad2, input_mode);
+				gamepad->state.ry = dpadToAnalogY(gamepad->state.dpad|dpad1|dpad2, input_mode);
+				gamepad->state.dpad = 0;
+				gamepad->state.lx = joystickMid;
+				gamepad->state.ly = joystickMid;
+				break;
+			default:
+				gamepad->state.dpad |= dpad1|dpad2;
+				gamepad->state.lx = joystickMid;
+				gamepad->state.ly = joystickMid;
+				gamepad->state.rx = joystickMid;
+				gamepad->state.ry = joystickMid;
+				break;
+			}
+		}
     }
 
     // Tilt 1

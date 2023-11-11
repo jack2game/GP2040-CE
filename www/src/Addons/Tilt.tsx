@@ -148,15 +148,22 @@ export const tiltScheme = {
 		.number()
 		.label('Tilt Right Stick SOCD Mode')
 		.validateSelectionWhenValue('TiltInputEnabled', TILT_SOCD_MODES),
-	tiltRotate1Then2Mode: yup
+	tilt1Then2Mode: yup
 		.number()
-		.label('Tilt/Rotate 1 then 2 Mode')
+		.label('Tilt 1 then 2 Mode')
 		.validateSelectionWhenValue('TiltInputEnabled', DPAD_MODES),
-	tiltRotate2Then1Mode: yup
+	tilt2Then1Mode: yup
 		.number()
-		.label('Tilt/Rotate 2 then 1 Mode')
+		.label('Tilt 2 then 1 Mode')
 		.validateSelectionWhenValue('TiltInputEnabled', DPAD_MODES),
-		
+	rotate1Then2Mode: yup
+		.number()
+		.label('Rotate 1 then 2 Mode')
+		.validateSelectionWhenValue('TiltInputEnabled', DPAD_MODES),
+	rotate2Then1Mode: yup
+		.number()
+		.label('Rotate 2 then 1 Mode')
+		.validateSelectionWhenValue('TiltInputEnabled', DPAD_MODES),
 };
 
 export const tiltState = {
@@ -664,33 +671,65 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						))}
 					</FormSelect>
 					<FormSelect
-						label={t('AddonsConfig:tilt-rotate-1-then-2-mode')}
-						name="tiltRotate1Then2Mode"
+						label={t('AddonsConfig:tilt-1-then-2-mode')}
+						name="tilt1Then2Mode"
 						className="form-select-sm"
 						groupClassName="col-sm-2 mb-3"
-						value={values.tiltRotate1Then2Mode}
-						error={errors.tiltRotate1Then2Mode}
-						isInvalid={errors.tiltRotate1Then2Mode}
+						value={values.tilt1Then2Mode}
+						error={errors.tilt1Then2Mode}
+						isInvalid={errors.tilt1Then2Mode}
 						onChange={handleChange}
 					>
 						{DPAD_MODES.map((o, i) => (
-							<option key={`button-tiltRotate1Then2Mode-option-${i}`} value={o.value}>
+							<option key={`button-tilt1Then2Mode-option-${i}`} value={o.value}>
 								{o.label}
 							</option>
 						))}
 					</FormSelect>
 					<FormSelect
-						label={t('AddonsConfig:tilt-rotate-2-then-1-mode')}
-						name="tiltRotate2Then1Mode"
+						label={t('AddonsConfig:tilt-2-then-1-mode')}
+						name="tilt2Then1Mode"
 						className="form-select-sm"
 						groupClassName="col-sm-2 mb-3"
-						value={values.tiltRotate2Then1Mode}
-						error={errors.tiltRotate2Then1Mode}
-						isInvalid={errors.tiltRotate2Then1Mode}
+						value={values.tilt2Then1Mode}
+						error={errors.tilt2Then1Mode}
+						isInvalid={errors.tilt2Then1Mode}
 						onChange={handleChange}
 					>
 						{DPAD_MODES.map((o, i) => (
-							<option key={`button-tiltRotate2Then1Mode-option-${i}`} value={o.value}>
+							<option key={`button-tilt2Then1Mode-option-${i}`} value={o.value}>
+								{o.label}
+							</option>
+						))}
+					</FormSelect>
+					<FormSelect
+						label={t('AddonsConfig:rotate-1-then-2-mode')}
+						name="rotate1Then2Mode"
+						className="form-select-sm"
+						groupClassName="col-sm-2 mb-3"
+						value={values.rotate1Then2Mode}
+						error={errors.rotate1Then2Mode}
+						isInvalid={errors.rotate1Then2Mode}
+						onChange={handleChange}
+					>
+						{DPAD_MODES.map((o, i) => (
+							<option key={`button-rotate1Then2Mode-option-${i}`} value={o.value}>
+								{o.label}
+							</option>
+						))}
+					</FormSelect>
+					<FormSelect
+						label={t('AddonsConfig:rotate-2-then-1-mode')}
+						name="rotate2Then1Mode"
+						className="form-select-sm"
+						groupClassName="col-sm-2 mb-3"
+						value={values.rotate2Then1Mode}
+						error={errors.rotate2Then1Mode}
+						isInvalid={errors.rotate2Then1Mode}
+						onChange={handleChange}
+					>
+						{DPAD_MODES.map((o, i) => (
+							<option key={`button-rotate2Then1Mode-option-${i}`} value={o.value}>
 								{o.label}
 							</option>
 						))}
