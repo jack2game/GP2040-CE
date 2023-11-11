@@ -635,7 +635,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						label={t('AddonsConfig:tilt-left-socd-mode-label')}
 						name="tiltLeftSOCDMode"
 						className="form-select-sm"
-						groupClassName="col-sm-3 mb-3"
+						groupClassName="col-sm-2 mb-3"
 						value={values.tiltLeftSOCDMode}
 						error={errors.tiltLeftSOCDMode}
 						isInvalid={errors.tiltLeftSOCDMode}
@@ -651,7 +651,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						label={t('AddonsConfig:tilt-right-socd-mode-label')}
 						name="tiltRightSOCDMode"
 						className="form-select-sm"
-						groupClassName="col-sm-3 mb-3"
+						groupClassName="col-sm-2 mb-3"
 						value={values.tiltRightSOCDMode}
 						error={errors.tiltRightSOCDMode}
 						isInvalid={errors.tiltRightSOCDMode}
@@ -667,7 +667,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						label={t('AddonsConfig:tilt-rotate-1-then-2-mode')}
 						name="tiltRotate1Then2Mode"
 						className="form-select-sm"
-						groupClassName="col-sm-3 mb-3"
+						groupClassName="col-sm-2 mb-3"
 						value={values.tiltRotate1Then2Mode}
 						error={errors.tiltRotate1Then2Mode}
 						isInvalid={errors.tiltRotate1Then2Mode}
@@ -683,7 +683,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						label={t('AddonsConfig:tilt-rotate-2-then-1-mode')}
 						name="tiltRotate2Then1Mode"
 						className="form-select-sm"
-						groupClassName="col-sm-3 mb-3"
+						groupClassName="col-sm-2 mb-3"
 						value={values.tiltRotate2Then1Mode}
 						error={errors.tiltRotate2Then1Mode}
 						isInvalid={errors.tiltRotate2Then1Mode}
