@@ -175,6 +175,8 @@ void I2CDisplayAddon::process() {
 				case BUTTON_LAYOUT_FIGHTBOARD_MIRRORED:
 					drawFightboardMirrored(0, 22, 7, 2);
 					break;
+				case BUTTON_LAYOUT_SUNGA17KEYA:
+					drawSunga17keyA(8, 20, 6, 2);
 			}
 
 			switch (options.buttonLayoutRight) {
@@ -235,6 +237,8 @@ void I2CDisplayAddon::process() {
 				case BUTTON_LAYOUT_FIGHTBOARD_STICK_MIRRORED:
 					drawArcadeStick(90, 22, 8, 2);
 					break;
+				case BUTTON_LAYOUT_SUNGA17KEYB:
+					drawSunga17keyB(8, 20, 6, 2);
 			}
 
 			if(isInputHistoryEnabled && inputHistoryAddon != nullptr) {
@@ -403,6 +407,9 @@ void I2CDisplayAddon::drawButtonLayoutLeft(ButtonLayoutParamsLeft& options)
 			case BUTTON_LAYOUT_FIGHTBOARD_MIRRORED:
 				drawFightboardMirrored(startX, startY, buttonRadius, buttonPadding);
 				break;
+			case BUTTON_LAYOUT_SUNGA17KEYA:
+				drawSunga17keyA(startX, startY, buttonRadius, buttonPadding);
+				break;
 		}
 }
 
@@ -468,6 +475,9 @@ void I2CDisplayAddon::drawButtonLayoutRight(ButtonLayoutParamsRight& options)
 				break;
 			case BUTTON_LAYOUT_FIGHTBOARD_STICK_MIRRORED:
 				drawArcadeStick(startX, startY, buttonRadius, buttonPadding);
+				break;
+			case BUTTON_LAYOUT_SUNGA17KEYB:
+				drawSunga17keyB(startX, startY, buttonRadius, buttonPadding);
 				break;
 		}
 }
@@ -967,6 +977,41 @@ void I2CDisplayAddon::drawDancepadB(int startX, int startY, int buttonSize, int 
 	obdRectangle(&obd, startX, startY + buttonMargin * 2, startX + buttonSize, startY + buttonSize + buttonMargin * 2, 1, pGamepad->pressedB4()); // Down/Left
 	obdRectangle(&obd, startX + buttonMargin * 2, startY, startX + buttonSize + buttonMargin * 2, startY + buttonSize, 1, pGamepad->pressedB1()); // Up/Right
 	obdRectangle(&obd, startX + buttonMargin * 2, startY + buttonMargin * 2, startX + buttonSize + buttonMargin * 2, startY + buttonSize + buttonMargin * 2, 1, pGamepad->pressedB3()); // Down/Right
+}
+
+void I2CDisplayAddon::drawSunga17keyA(int startX, int startY, int buttonRadius, int buttonPadding)
+{
+	const int buttonMargin = buttonPadding + (buttonRadius * 2);
+
+	obdPreciseEllipse(&obd, startX, startY, buttonRadius, buttonRadius, 1, pressedLeft());
+	obdPreciseEllipse(&obd, startX + buttonMargin, startY, buttonRadius, buttonRadius, 1, pressedDown());
+	obdPreciseEllipse(&obd, startX + (buttonMargin * 1.875), startY + (buttonMargin / 2), buttonRadius, buttonRadius, 1, pressedRight());
+	obdPreciseEllipse(&obd, startX + (buttonMargin * (isInputHistoryEnabled ? 1.875 : 2.25)), startY + buttonMargin * (isInputHistoryEnabled ? 1.5 : 1.875), 9, 9, 1, pressedUp());
+	
+	obdPreciseEllipse(&obd, startX + (buttonMargin * (isInputHistoryEnabled ? 1.875 : 2.25)) - 3, startY - 7, 3, 3, 1, pGamepad->pressedA1());
+}
+
+void I2CDisplayAddon::drawSunga17keyB(int startX, int startY, int buttonRadius, int buttonPadding)
+{
+	const int buttonMargin = buttonPadding + (buttonRadius * 2);
+
+	obdPreciseEllipse(&obd, startX + buttonMargin * 3.625, startY + buttonMargin, buttonRadius, buttonRadius, 1, pGamepad->pressedB3());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 4.625, startY + buttonRadius, buttonRadius, buttonRadius, 1, pGamepad->pressedB4());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 5.625, startY + buttonRadius, buttonRadius, buttonRadius, 1, pGamepad->pressedR1());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 6.625, startY + buttonRadius, buttonRadius, buttonRadius, 1, pGamepad->pressedL1());
+
+	obdPreciseEllipse(&obd, startX + buttonMargin * 3.625, startY + buttonMargin + buttonMargin, buttonRadius, buttonRadius, 1, pGamepad->pressedB1());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 4.625, startY + buttonRadius + buttonMargin, buttonRadius, buttonRadius, 1, pGamepad->pressedB2());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 5.625, startY + buttonRadius + buttonMargin, buttonRadius, buttonRadius, 1, pGamepad->pressedR2());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 6.625, startY + buttonRadius + buttonMargin, buttonRadius, buttonRadius, 1, pGamepad->pressedL2());
+
+    // Extra buttons
+	obdPreciseEllipse(&obd, startX + buttonMargin * 3.625, startY, buttonRadius, buttonRadius, 1, pGamepad->pressedL3());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 4.625, startY + buttonRadius + buttonMargin + buttonMargin, buttonRadius, buttonRadius, 1, pGamepad->pressedR3());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 6.2,   startY - buttonRadius, buttonRadius, buttonRadius, 1, pGamepad->pressedS1());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 7.2,   startY - buttonRadius, buttonRadius, buttonRadius, 1, pGamepad->pressedS2());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 7.6,   startY + buttonMargin-1, 3, 3, 1, pGamepad->pressedA2());
+	
 }
 
 void I2CDisplayAddon::drawBlankA(int startX, int startY, int buttonSize, int buttonPadding)

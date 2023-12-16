@@ -110,6 +110,7 @@ namespace ConfigLegacy
         BUTTON_LAYOUT_FIGHTBOARD_MIRRORED,
         BUTTON_LAYOUT_CUSTOMA,
         BUTTON_LAYOUT_OPENCORE0WASDA,
+		BUTTON_LAYOUT_SUNGA17KEYA,
     };
 
     enum ButtonLayoutRight
@@ -133,6 +134,7 @@ namespace ConfigLegacy
         BUTTON_LAYOUT_CUSTOMB,
         BUTTON_LAYOUT_KEYBOARD8B,
         BUTTON_LAYOUT_OPENCORE0WASDB,
+		BUTTON_LAYOUT_SUNGA17KEYB,
     };
 
     enum SplashMode
@@ -551,6 +553,7 @@ static bool isValidButtonLayout(ConfigLegacy::ButtonLayout buttonLayout)
         case BUTTON_LAYOUT_FIGHTBOARD_MIRRORED:
         case BUTTON_LAYOUT_CUSTOMA:
         case BUTTON_LAYOUT_OPENCORE0WASDA:
+		case BUTTON_LAYOUT_SUNGA17KEYA:
             return true;
     }
     return false;
@@ -579,6 +582,7 @@ static bool isValidButtonLayoutRight(ConfigLegacy::ButtonLayoutRight buttonLayou
         case BUTTON_LAYOUT_CUSTOMB:
         case BUTTON_LAYOUT_KEYBOARD8B:
         case BUTTON_LAYOUT_OPENCORE0WASDB:
+		case BUTTON_LAYOUT_SUNGA17KEYB:
             return true;
     }
     return false;

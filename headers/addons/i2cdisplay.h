@@ -194,6 +194,8 @@ private:
 	void drawFightboardMirrored(int startX, int startY, int buttonRadius, int buttonPadding);
 	void drawFightboardStick(int startX, int startY, int buttonRadius, int buttonPadding);
 	void drawFightboardStickMirrored(int startX, int startY, int buttonRadius, int buttonPadding);
+	void drawSunga17keyA(int startX, int startY, int buttonSize, int buttonPadding);
+	void drawSunga17keyB(int startX, int startY, int buttonSize, int buttonPadding);
 	bool pressedUp();
 	bool pressedDown();
 	bool pressedLeft();
