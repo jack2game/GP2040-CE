@@ -35,6 +35,10 @@ const BUTTON_LAYOUTS = [
 	{ label: 'Custom', value: 12 }, // BUTTON_LAYOUT_CUSTOM
 	{ label: 'Open_Core0 WASD', value: 13 }, // BUTTON_LAYOUT_OPENCORE0WASDA
 	{ label: 'Sunga 17 Key', value: 14 }, // BUTTON_LAYOUT_SUNGA17KEYA
+	{ label: 'Sunga 14 Key LR', value: 15 }, // BUTTON_LAYOUT_SUNGA14KEYLRA
+	{ label: 'Sunga 14 Key UD', value: 16 }, // BUTTON_LAYOUT_SUNGA14KEYUDA
+	{ label: 'Sunga 12 Key', value: 17 }, // BUTTON_LAYOUT_SUNGA12KEYA
+	{ label: 'Sunga 13 Key', value: 18 }, // BUTTON_LAYOUT_SUNGA13KEYA
 ];
 
 const BUTTON_LAYOUTS_RIGHT = [
@@ -58,6 +62,10 @@ const BUTTON_LAYOUTS_RIGHT = [
 	{ label: 'Keyboard 8', value: 17 }, // BUTTON_LAYOUT_KEYBOARD8B
 	{ label: 'Open_Core0 WASD', value: 18 }, // BUTTON_LAYOUT_OPENCORE0WASDB
 	{ label: 'Sunga 17 Key', value: 19 }, // BUTTON_LAYOUT_SUNGA17KEYB
+	{ label: 'Sunga 14 Key LR', value: 20 }, // BUTTON_LAYOUT_SUNGA14KEYLRB
+	{ label: 'Sunga 14 Key UD', value: 21 }, // BUTTON_LAYOUT_SUNGA14KEYUDB
+	{ label: 'Sunga 12 Key', value: 22 }, // BUTTON_LAYOUT_SUNGA12KEYB
+	{ label: 'Sunga 13 Key', value: 23 }, // BUTTON_LAYOUT_SUNGA13KEYB
 ];
 
 const SPLASH_MODES = [
