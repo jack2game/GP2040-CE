@@ -6,12 +6,11 @@
 #include "addons/i2cdisplay.h"
 #include "GamepadState.h"
 #include "enums.h"
-#include "helper.h"
 #include "storagemanager.h"
 #include "pico/stdlib.h"
 #include "bitmaps.h"
 #include "ps4_driver.h"
-#include "helper.h"
+#include "version.h"
 #include "config.pb.h"
 #include "usb_driver.h"
 
@@ -1251,7 +1250,7 @@ void I2CDisplayAddon::drawStatusBar(Gamepad * gamepad)
 		case INPUT_MODE_SWITCH: statusBar += "SWITCH"; break;
 		case INPUT_MODE_XINPUT: statusBar += "XINPUT"; break;
 		case INPUT_MODE_MDMINI: statusBar += "GEN/MD"; break;
-		case INPUT_MODE_NEOGEO: statusBar += "NEOGEO"; break;
+		case INPUT_MODE_NEOGEO: statusBar += "NGMINI"; break;
 		case INPUT_MODE_PCEMINI: statusBar += "PCE/TG"; break;
 		case INPUT_MODE_EGRET: statusBar += "EGRET"; break;
 		case INPUT_MODE_ASTRO: statusBar += "ASTRO"; break;
