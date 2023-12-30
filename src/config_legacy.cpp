@@ -116,6 +116,8 @@ namespace ConfigLegacy
 		BUTTON_LAYOUT_SUNGA14KEYUDA,
 		BUTTON_LAYOUT_SUNGA17KEYA,
 		BUTTON_LAYOUT_SUNGA17KEYAALT,
+		BUTTON_LAYOUT_SUNGA18KEYA,
+		BUTTON_LAYOUT_SUNGA18KEYAALT,
     };
 
     enum ButtonLayoutRight
@@ -144,6 +146,7 @@ namespace ConfigLegacy
 		BUTTON_LAYOUT_SUNGA14KEYLRB,
 		BUTTON_LAYOUT_SUNGA14KEYUDB,
 		BUTTON_LAYOUT_SUNGA17KEYB,
+		BUTTON_LAYOUT_SUNGA18KEYB,
     };
 
     enum SplashMode
@@ -568,6 +571,8 @@ static bool isValidButtonLayout(ConfigLegacy::ButtonLayout buttonLayout)
 		case BUTTON_LAYOUT_SUNGA14KEYUDA:
 		case BUTTON_LAYOUT_SUNGA17KEYA:
 		case BUTTON_LAYOUT_SUNGA17KEYAALT:
+		case BUTTON_LAYOUT_SUNGA18KEYA:
+		case BUTTON_LAYOUT_SUNGA18KEYAALT:
             return true;
     }
     return false;
@@ -601,6 +606,7 @@ static bool isValidButtonLayoutRight(ConfigLegacy::ButtonLayoutRight buttonLayou
 		case BUTTON_LAYOUT_SUNGA14KEYLRB:
 		case BUTTON_LAYOUT_SUNGA14KEYUDB:
 		case BUTTON_LAYOUT_SUNGA17KEYB:
+		case BUTTON_LAYOUT_SUNGA18KEYB:
             return true;
     }
     return false;
