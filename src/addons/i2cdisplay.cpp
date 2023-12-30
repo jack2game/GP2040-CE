@@ -434,7 +434,7 @@ void I2CDisplayAddon::drawButtonLayoutLeft(ButtonLayoutParamsLeft& options)
 				drawSunga17keyA(startX, startY, buttonRadius, buttonPadding);
 				break;
 			case BUTTON_LAYOUT_SUNGA17KEYAALT:
-				drawSunga17keyAlt(startX, startY, buttonRadius, buttonPadding);
+				drawSunga17keyAAlt(startX, startY, buttonRadius, buttonPadding);
 				break;
 		}
 }
