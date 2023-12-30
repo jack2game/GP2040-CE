@@ -1259,7 +1259,7 @@ void I2CDisplayAddon::drawSunga18keyA(int startX, int startY, int buttonRadius, 
 	obdPreciseEllipse(&obd, startX, startY, buttonRadius, buttonRadius, 1, pressedLeft());
 	obdPreciseEllipse(&obd, startX + buttonMargin, startY, buttonRadius, buttonRadius, 1, pressedDown());
 	obdPreciseEllipse(&obd, startX + buttonMargin * 1.875, startY + buttonMargin / 2, buttonRadius, buttonRadius, 1, pressedRight());
-	obdPreciseEllipse(&obd, startX + buttonMargin * 2.25, startY +  buttonMargin * 2.375, 8, 8, 1, pressedUp());
+	obdPreciseEllipse(&obd, startX + buttonMargin * 2.25, startY + buttonMargin * 2.375, 8, 8, 1, pressedUp());
 	
 	obdPreciseEllipse(&obd, startX + buttonMargin * 2.75, startY - 7, 3, 3, 1, pGamepad->pressedA1());
 	obdPreciseEllipse(&obd, startX + buttonMargin * 3, startY + buttonRadius, buttonRadius, buttonRadius, 1, pGamepad->pressedS1());
