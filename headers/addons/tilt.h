@@ -175,8 +175,6 @@ private:
 	void debounce();
 	void SOCDTiltClean(SOCDMode, SOCDMode);
 	void OverrideGamepad(Gamepad*, uint8_t, uint8_t);
-	uint8_t dDebLeftState;          // Debounce State (stored)
-	uint8_t dDebRightState;          // Debounce State (stored)
 	uint8_t tiltLeftState;          // Tilt State
 	uint8_t tiltRightState;          // Tilt Right Analog State
 	DpadDirection leftLastTiltUD; // Tilt Last Up-Down
