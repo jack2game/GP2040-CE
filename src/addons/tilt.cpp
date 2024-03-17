@@ -189,7 +189,10 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 	double rotate5degreeRight = rotate5FactorRight;
 	double rotate6degreeRight = rotate6FactorRight;
 
-	uint16_t joystickMid = DriverManager::getInstance().getDriver()->GetJoystickMidValue();
+	uint16_t joystickMid = GAMEPAD_JOYSTICK_MID;
+	if ( DriverManager::getInstance().getDriver() != nullptr ) {
+		joystickMid = DriverManager::getInstance().getDriver()->GetJoystickMidValue();
+	}
 
 	// (Tilt1+Tilt2) = Selected Mode
     if (pinTilt1Pressed && pinTilt2Pressed && !pinRotate1Pressed && !pinRotate2Pressed) {
