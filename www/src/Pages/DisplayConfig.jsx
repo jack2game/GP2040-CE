@@ -19,6 +19,7 @@ const ON_OFF_OPTIONS = [
 	{ label: 'Enabled', value: 1 },
 ];
 
+<<<<<<< HEAD
 const BUTTON_LAYOUTS = [
 	{ label: 'Stick', value: 0 }, // BUTTON_LAYOUT_STICK
 	{ label: 'Stickless', value: 1 }, // BUTTON_LAYOUT_STICKLESS
@@ -103,6 +104,8 @@ const BUTTON_LAYOUTS_RIGHT = [
 	{ label: 'Sunga 18 Key Dual Stick Pref', value: 39 }, // BUTTON_LAYOUT_SUNGA18KEYBPREF
 ];
 
+=======
+>>>>>>> 3834eb90d1248e60c811f10fe649aef4c20089b5
 const SPLASH_MODES = [
 	{ label: 'Enabled (Custom Splash Screen)', value: 0 },  // STATICSPLASH
 	{ label: 'Logo Close In', value: 1 }, // CLOSEIN
@@ -148,15 +151,15 @@ const defaultValues = {
 	displaySaverTimeout: 0,
 };
 
-const buttonLayoutSchema = yup
+let buttonLayoutDefinitions = {buttonLayout:{},buttonLayoutRight:{}};
+
+const buttonLayoutSchemaBase = yup
 	.number()
-	.required()
-	.oneOf(BUTTON_LAYOUTS.map((o) => o.value))
+	.required();
+
+let buttonLayoutSchema = buttonLayoutSchemaBase
 	.label('Button Layout Left');
-const buttonLayoutRightSchema = yup
-	.number()
-	.required()
-	.oneOf(BUTTON_LAYOUTS_RIGHT.map((o) => o.value))
+let buttonLayoutRightSchema = buttonLayoutSchemaBase
 	.label('Button Layout Right');
 
 const schema = yup.object().shape({
@@ -228,6 +231,9 @@ const FormContext = () => {
 			const data = await WebApi.getDisplayOptions();
 			const splashImageResponse = await WebApi.getSplashImage();
 			data.splashImage = splashImageResponse.splashImage;
+            buttonLayoutDefinitions = await WebApi.getButtonLayoutDefs();
+            buttonLayoutSchema = buttonLayoutSchema.oneOf(Object.values(buttonLayoutDefinitions.buttonLayout));
+            buttonLayoutRightSchema = buttonLayoutRightSchema.oneOf(Object.values(buttonLayoutDefinitions.buttonLayoutRight));
 			setValues(data);
 		}
 		fetchData();
@@ -458,9 +464,12 @@ export default function DisplayConfigPage() {
                                         isInvalid={errors.buttonLayout}
                                         onChange={handleChange}
                                     >
-                                        {BUTTON_LAYOUTS.map((o, i) => (
-                                            <option key={`buttonLayout-option-${i}`} value={o.value}>
-                                                {o.label}
+                                        {Object.keys(buttonLayoutDefinitions.buttonLayout).map((o, i) => (
+                                            <option
+                                                key={`buttonLayout-option-${i}`}
+                                                value={buttonLayoutDefinitions.buttonLayout[o]}
+                                            >
+                                                {t(`LayoutConfig:layouts.left.${o}`)}
                                             </option>
                                         ))}
                                     </FormSelect>
@@ -474,12 +483,12 @@ export default function DisplayConfigPage() {
                                         isInvalid={errors.buttonLayoutRight}
                                         onChange={handleChange}
                                     >
-                                        {BUTTON_LAYOUTS_RIGHT.map((o, i) => (
+                                        {Object.keys(buttonLayoutDefinitions.buttonLayoutRight).map((o, i) => (
                                             <option
                                                 key={`buttonLayoutRight-option-${i}`}
-                                                value={o.value}
+                                                value={buttonLayoutDefinitions.buttonLayoutRight[o]}
                                             >
-                                                {o.label}
+                                                {t(`LayoutConfig:layouts.right.${o}`)}
                                             </option>
                                         ))}
                                     </FormSelect>
@@ -519,12 +528,12 @@ export default function DisplayConfigPage() {
                                                     value={values.buttonLayoutCustomOptions.params.layout}
                                                     onChange={handleChange}
                                                 >
-                                                    {BUTTON_LAYOUTS.slice(0, -1).map((o, i) => (
+                                                    {Object.keys(buttonLayoutDefinitions.buttonLayout).map((o, i) => (
                                                         <option
                                                             key={`buttonLayout-option-${i}`}
-                                                            value={o.value}
+                                                            value={buttonLayoutDefinitions.buttonLayout[o]}
                                                         >
-                                                            {o.label}
+                                                            {t(`LayoutConfig:layouts.left.${o}`)}
                                                         </option>
                                                     ))}
                                                 </FormSelect>
@@ -610,12 +619,12 @@ export default function DisplayConfigPage() {
                                                     }
                                                     onChange={handleChange}
                                                 >
-                                                    {BUTTON_LAYOUTS_RIGHT.slice(0, -1).map((o, i) => (
+                                                    {Object.keys(buttonLayoutDefinitions.buttonLayoutRight).map((o, i) => (
                                                         <option
                                                             key={`buttonLayoutRight-option-${i}`}
-                                                            value={o.value}
+                                                            value={buttonLayoutDefinitions.buttonLayoutRight[o]}
                                                         >
-                                                            {o.label}
+                                                            {t(`LayoutConfig:layouts.right.${o}`)}
                                                         </option>
                                                     ))}
                                                 </FormSelect>
