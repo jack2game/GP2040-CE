@@ -658,32 +658,6 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						min={0}
 						max={360}
 					/>
-					<FormControl
-						type="number"
-						label={t('AddonsConfig:rotate-5-factor-left-label')}
-						name="factorRotate5Left"
-						className="form-select-sm"
-						groupClassName="col-sm-2 mb-3"
-						value={values.factorRotate5Left}
-						error={errors.factorRotate5Left}
-						isInvalid={errors.factorRotate5Left}
-						onChange={handleChange}
-						min={0}
-						max={360}
-					/>
-					<FormControl
-						type="number"
-						label={t('AddonsConfig:rotate-6-factor-left-label')}
-						name="factorRotate6Left"
-						className="form-select-sm"
-						groupClassName="col-sm-2 mb-3"
-						value={values.factorRotate6Left}
-						error={errors.factorRotate6Left}
-						isInvalid={errors.factorRotate6Left}
-						onChange={handleChange}
-						min={0}
-						max={360}
-					/>
 				</Row>
 				<Row className="mb-3">
 					<FormControl
@@ -734,32 +708,6 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						value={values.factorRotate4Right}
 						error={errors.factorRotate4Right}
 						isInvalid={errors.factorRotate4Right}
-						onChange={handleChange}
-						min={0}
-						max={360}
-					/>
-					<FormControl
-						type="number"
-						label={t('AddonsConfig:rotate-5-factor-right-label')}
-						name="factorRotate5Right"
-						className="form-select-sm"
-						groupClassName="col-sm-2 mb-3"
-						value={values.factorRotate5Right}
-						error={errors.factorRotate5Right}
-						isInvalid={errors.factorRotate5Right}
-						onChange={handleChange}
-						min={0}
-						max={360}
-					/>
-					<FormControl
-						type="number"
-						label={t('AddonsConfig:rotate-6-factor-right-label')}
-						name="factorRotate6Right"
-						className="form-select-sm"
-						groupClassName="col-sm-2 mb-3"
-						value={values.factorRotate6Right}
-						error={errors.factorRotate6Right}
-						isInvalid={errors.factorRotate6Right}
 						onChange={handleChange}
 						min={0}
 						max={360}
