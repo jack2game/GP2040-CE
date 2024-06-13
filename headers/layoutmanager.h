@@ -128,6 +128,24 @@ class LayoutManager {
         LayoutList draw6GAWDRight();
         LayoutList draw6GAWDAllButtonRight();
         LayoutList draw6GAWDAllButtonPlusRight();
+        LayoutList drawSunga12keyA();
+        LayoutList drawSunga12keyB();
+        LayoutList drawSunga13keyA();
+        LayoutList drawSunga13keyB();
+        LayoutList drawSunga14keyLRA();
+        LayoutList drawSunga14keyLRB();
+        LayoutList drawSunga14keyUDA();
+        LayoutList drawSunga14keyUDB();
+        LayoutList drawSunga17keyA();
+        LayoutList drawSunga17keyAAlt();
+        LayoutList drawSunga17keyB();
+        LayoutList drawSunga17keyBPref();
+        LayoutList drawSunga18keyA();
+        LayoutList drawSunga18keyAAlt();
+        LayoutList drawSunga18keyADualUp();
+        LayoutList drawSunga18keyAPref();
+        LayoutList drawSunga18keyB();
+        LayoutList drawSunga18keyBPref();
     private:
         LayoutManager(){}
 

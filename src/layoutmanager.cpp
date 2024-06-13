@@ -115,6 +115,28 @@ LayoutManager::LayoutList LayoutManager::getLeftLayout(uint16_t index) {
             return draw6GAWDAllButtonLeft();
         case BUTTON_LAYOUT_6GAWD_ALLBUTTONPLUS_A:
             return draw6GAWDAllButtonPlusLeft();
+
+        case BUTTON_LAYOUT_SUNGA12KEYA:
+            return drawSunga12keyA();
+        case BUTTON_LAYOUT_SUNGA13KEYA:
+            return drawSunga13keyA();
+        case BUTTON_LAYOUT_SUNGA14KEYLRA:
+            return drawSunga14keyLRA();
+        case BUTTON_LAYOUT_SUNGA14KEYUDA:
+            return drawSunga14keyUDA();
+        case BUTTON_LAYOUT_SUNGA17KEYA:
+            return drawSunga17keyA();
+        case BUTTON_LAYOUT_SUNGA17KEYAALT:
+            return drawSunga17keyAAlt();
+        case BUTTON_LAYOUT_SUNGA18KEYA:
+            return drawSunga18keyA();
+        case BUTTON_LAYOUT_SUNGA18KEYAALT:
+            return drawSunga18keyAAlt();
+        case BUTTON_LAYOUT_SUNGA18KEYADUALUP:
+            return drawSunga18keyADualUp();
+        case BUTTON_LAYOUT_SUNGA18KEYAPREF:
+            return drawSunga18keyAPref();
+
         default:
             break;
     }
@@ -201,6 +223,24 @@ LayoutManager::LayoutList LayoutManager::getRightLayout(uint16_t index) {
             return draw6GAWDAllButtonRight();
         case BUTTON_LAYOUT_6GAWD_ALLBUTTONPLUS_B:
             return draw6GAWDAllButtonPlusRight();
+
+        case BUTTON_LAYOUT_SUNGA12KEYB:
+            return drawSunga12keyB();
+        case BUTTON_LAYOUT_SUNGA13KEYB:
+            return drawSunga13keyB();
+        case BUTTON_LAYOUT_SUNGA14KEYLRB:
+            return drawSunga14keyLRB();
+        case BUTTON_LAYOUT_SUNGA14KEYUDB:
+            return drawSunga14keyUDB();
+        case BUTTON_LAYOUT_SUNGA17KEYB:
+            return drawSunga17keyB();
+        case BUTTON_LAYOUT_SUNGA17KEYBPREF:
+            return drawSunga17keyBPref();
+        case BUTTON_LAYOUT_SUNGA18KEYB:
+            return drawSunga18keyB();
+        case BUTTON_LAYOUT_SUNGA18KEYBPREF:
+            return drawSunga18keyBPref();
+
         default:
             break;
     }
@@ -476,6 +516,56 @@ LayoutManager::LayoutList LayoutManager::drawGitadoraStrumA()
     return BUTTON_GROUP_GITADORA_STRUM_A;
 }
 
+LayoutManager::LayoutList LayoutManager::drawSunga12keyA()
+{
+    return BUTTON_GROUP_SUNGA12KEYA;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga13keyA()
+{
+    return BUTTON_GROUP_SUNGA13KEYA;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga14keyLRA()
+{
+    return BUTTON_GROUP_SUNGA14KEYLRA;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga14keyUDA()
+{
+    return BUTTON_GROUP_SUNGA14KEYUDA;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga17keyA()
+{
+    return BUTTON_GROUP_SUNGA17KEYA;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga17keyAAlt()
+{
+    return BUTTON_GROUP_SUNGA17KEYAALT;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga18keyA()
+{
+    return BUTTON_GROUP_SUNGA18KEYA;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga18keyAAlt()
+{
+    return BUTTON_GROUP_SUNGA18KEYAALT;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga18keyADualUp()
+{
+    return BUTTON_GROUP_SUNGA18KEYADUALUP;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga18keyAPref()
+{
+    return BUTTON_GROUP_SUNGA18KEYAPREF;
+}
+
 LayoutManager::LayoutList LayoutManager::drawBandHeroFretA()
 {
     return BUTTON_GROUP_BANDHERO_FRET_A;
@@ -544,6 +634,46 @@ LayoutManager::LayoutList LayoutManager::drawGitadoraFretB()
 LayoutManager::LayoutList LayoutManager::drawGitadoraStrumB()
 {
     return BUTTON_GROUP_GITADORA_STRUM_B;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga12keyB()
+{
+    return BUTTON_GROUP_SUNGA12KEYB;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga13keyB()
+{
+    return BUTTON_GROUP_SUNGA13KEYB;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga14keyLRB()
+{
+    return BUTTON_GROUP_SUNGA14KEYLRB;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga14keyUDB()
+{
+    return BUTTON_GROUP_SUNGA14KEYUDB;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga17keyB()
+{
+    return BUTTON_GROUP_SUNGA17KEYB;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga17keyBPref()
+{
+    return BUTTON_GROUP_SUNGA17KEYBPREF;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga18keyB()
+{
+    return BUTTON_GROUP_SUNGA18KEYB;
+}
+
+LayoutManager::LayoutList LayoutManager::drawSunga18keyBPref()
+{
+    return BUTTON_GROUP_SUNGA18KEYBPREF;
 }
 
 LayoutManager::LayoutList LayoutManager::drawBandHeroFretB()
