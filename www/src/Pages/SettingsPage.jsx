@@ -147,6 +147,7 @@ const INPUT_MODES = [
 		group: 'primary',
 		required: ['usb'],
 	},
+	{ labelKey: 'input-mode-options.generic', value: 14, group: 'primary' },
 	{ labelKey: 'input-mode-options.mdmini', value: 6, group: 'mini' },
 	{ labelKey: 'input-mode-options.neogeo', value: 7, group: 'mini' },
 	{ labelKey: 'input-mode-options.pcemini', value: 8, group: 'mini' },
@@ -184,6 +185,7 @@ const INPUT_BOOT_MODES = [
 		group: 'primary',
 		required: ['usb'],
 	},
+	{ labelKey: 'input-mode-options.generic', value: 14, group: 'primary' },
 	{ labelKey: 'input-mode-options.mdmini', value: 6, group: 'mini' },
 	{ labelKey: 'input-mode-options.neogeo', value: 7, group: 'mini' },
 	{ labelKey: 'input-mode-options.pcemini', value: 8, group: 'mini' },
@@ -261,6 +263,8 @@ const HOTKEY_ACTIONS = [
 	{ labelKey: 'hotkey-actions.s2-button', value: 32 },
 	{ labelKey: 'hotkey-actions.a1-button', value: 33 },
 	{ labelKey: 'hotkey-actions.a2-button', value: 34 },
+	{ labelKey: 'hotkey-actions.a3-button', value: 36 },
+	{ labelKey: 'hotkey-actions.a4-button', value: 37 },
 ];
 
 const FORCED_SETUP_MODES = [
