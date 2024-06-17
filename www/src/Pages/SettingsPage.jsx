@@ -11,7 +11,7 @@ import { AppContext } from '../Contexts/AppContext';
 import KeyboardMapper, { validateMappings } from '../Components/KeyboardMapper';
 import Section from '../Components/Section';
 import WebApi, { baseButtonMappings } from '../Services/WebApi';
-import { BUTTON_MASKS, getButtonLabels } from '../Data/Buttons';
+import { BUTTON_MASKS_OPTIONS, getButtonLabels } from '../Data/Buttons';
 
 import './SettingsPage.scss';
 
@@ -1011,19 +1011,19 @@ export default function SettingsPage() {
 										<Nav variant="pills" className="flex-column">
 											<Nav.Item>
 												<Nav.Link eventKey="inputmode">
-													Input Mode Settings
+												{t('SettingsPage:settings-header-text')}
 												</Nav.Link>
 											</Nav.Item>
 											<Nav.Item>
-												<Nav.Link eventKey="gamepad">Gamepad Settings</Nav.Link>
+												<Nav.Link eventKey="gamepad">{t('SettingsPage:gamepad-settings-header-text')}</Nav.Link>
 											</Nav.Item>
 											<Nav.Item>
 												<Nav.Link eventKey="bootmode">
-													Boot Input Modes
+												{t('SettingsPage:boot-input-mode-label')}
 												</Nav.Link>
 											</Nav.Item>
 											<Nav.Item>
-												<Nav.Link eventKey="hotkey">Hotkey Settings</Nav.Link>
+												<Nav.Link eventKey="hotkey">{t('SettingsPage:hotkey-settings-label')}</Nav.Link>
 											</Nav.Item>
 										</Nav>
 									</Col>
@@ -1350,7 +1350,7 @@ export default function SettingsPage() {
 																	</Form.Control.Feedback>
 																</Col>
 																<Col sm="auto">+</Col>
-																{BUTTON_MASKS.map((mask) =>
+																{BUTTON_MASKS_OPTIONS.map((mask) =>
 																	values[o] &&
 																	values[o]?.buttonsMask & mask.value ? (
 																		<>
@@ -1377,7 +1377,7 @@ export default function SettingsPage() {
 																						);
 																					}}
 																				>
-																					{BUTTON_MASKS.map((o, i2) => (
+																					{BUTTON_MASKS_OPTIONS.map((o, i2) => (
 																						<option
 																							key={`hotkey-${i}-button${i2}`}
 																							value={o.value}
@@ -1408,7 +1408,7 @@ export default function SettingsPage() {
 																			);
 																		}}
 																	>
-																		{BUTTON_MASKS.map((o, i2) => (
+																		{BUTTON_MASKS_OPTIONS.map((o, i2) => (
 																			<option
 																				key={`hotkey-${i}-buttonZero-${i2}`}
 																				value={o.value}
