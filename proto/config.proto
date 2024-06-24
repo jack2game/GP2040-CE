@@ -467,7 +467,7 @@ message TiltOptions
     optional int32 tiltRightAnalogRightPin = 12;
 
     optional SOCDMode tiltSOCDMode = 13;
-    
+
     optional int32 factorTilt1LeftX =  14;
     optional int32 factorTilt1LeftY =  15;
     optional int32 factorTilt1RightX =  16;
@@ -476,6 +476,34 @@ message TiltOptions
     optional int32 factorTilt2LeftY =  19;
     optional int32 factorTilt2RightX =  20;
     optional int32 factorTilt2RightY =  21;
+    optional int32 factorTilt3LeftX =  22;
+    optional int32 factorTilt3LeftY =  23;
+    optional int32 factorTilt3RightX =  24;
+    optional int32 factorTilt3RightY =  25;
+    optional int32 factorTilt4LeftX =  26;
+    optional int32 factorTilt4LeftY =  27;
+    optional int32 factorTilt4RightX =  28;
+    optional int32 factorTilt4RightY =  29;
+
+    optional int32 rotate1Pin = 30;
+    optional int32 rotate2Pin = 31;
+
+    optional int32 factorRotate1Left =  32;
+    optional int32 factorRotate1Right =  33;
+    optional int32 factorRotate2Left =  34;
+    optional int32 factorRotate2Right =  35;
+    optional int32 factorRotate3Left =  36;
+    optional int32 factorRotate3Right =  37;
+    optional int32 factorRotate4Left =  38;
+    optional int32 factorRotate4Right =  39;
+
+    optional SOCDMode tiltLeftSOCDMode = 40;
+    optional SOCDMode tiltRightSOCDMode = 41;
+
+    optional DpadMode tilt1Then2Mode = 42;
+    optional DpadMode tilt2Then1Mode = 43;
+    optional DpadMode rotate1Then2Mode = 44;
+    optional DpadMode rotate2Then1Mode = 45;
 }
 
 message BuzzerOptions
