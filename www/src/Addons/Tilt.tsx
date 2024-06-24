@@ -726,7 +726,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 					>
 						{TILT_SOCD_MODES.map((o, i) => (
 							<option key={`button-tiltLeftSOCDMode-option-${i}`} value={o.value}>
-								{o.label}
+								{t(`AddonsConfig:tilt-socd-mode-${i}`)}
 							</option>
 						))}
 					</FormSelect>
@@ -742,7 +742,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 					>
 						{TILT_SOCD_MODES.map((o, i) => (
 							<option key={`button-tiltRightSOCDMode-option-${i}`} value={o.value}>
-								{o.label}
+								{t(`AddonsConfig:tilt-socd-mode-${i}`)}
 							</option>
 						))}
 					</FormSelect>
@@ -758,7 +758,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 					>
 						{DPAD_MODES.map((o, i) => (
 							<option key={`button-tilt1Then2Mode-option-${i}`} value={o.value}>
-								{o.label}
+								{t(`AddonsConfig:tilt-socd-mode-${i}`)}
 							</option>
 						))}
 					</FormSelect>
@@ -774,7 +774,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 					>
 						{DPAD_MODES.map((o, i) => (
 							<option key={`button-tilt2Then1Mode-option-${i}`} value={o.value}>
-								{o.label}
+								{t(`AddonsConfig:tilt-socd-mode-${i}`)}
 							</option>
 						))}
 					</FormSelect>
@@ -790,7 +790,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 					>
 						{DPAD_MODES.map((o, i) => (
 							<option key={`button-rotate1Then2Mode-option-${i}`} value={o.value}>
-								{o.label}
+								{t(`AddonsConfig:tilt-socd-mode-${i}`)}
 							</option>
 						))}
 					</FormSelect>
@@ -806,7 +806,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 					>
 						{DPAD_MODES.map((o, i) => (
 							<option key={`button-rotate2Then1Mode-option-${i}`} value={o.value}>
-								{o.label}
+								{t(`AddonsConfig:tilt-socd-mode-${i}`)}
 							</option>
 						))}
 					</FormSelect>

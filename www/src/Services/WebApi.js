@@ -25,6 +25,20 @@ export const baseButtonMappings = {
 	R3: { pin: -1, key: 0, error: null },
 	A1: { pin: -1, key: 0, error: null },
 	A2: { pin: -1, key: 0, error: null },
+	A3: { pin: -1, key: 0, error: null },
+	A4: { pin: -1, key: 0, error: null },
+	E1: { pin: -1, key: 0, error: null },
+	E2: { pin: -1, key: 0, error: null },
+	E3: { pin: -1, key: 0, error: null },
+	E4: { pin: -1, key: 0, error: null },
+	E5: { pin: -1, key: 0, error: null },
+	E6: { pin: -1, key: 0, error: null },
+	E7: { pin: -1, key: 0, error: null },
+	E8: { pin: -1, key: 0, error: null },
+	E9: { pin: -1, key: 0, error: null },
+	E10: { pin: -1, key: 0, error: null },
+	E11: { pin: -1, key: 0, error: null },
+	E12: { pin: -1, key: 0, error: null },
 	Fn: { pin: -1, key: 0, error: null },
 };
 
@@ -362,7 +376,7 @@ async function setCustomTheme(customThemeOptions) {
 		});
 }
 
-async function getButtonLayouts(setLoading) {
+async function getButtonLayouts() {
 	try {
 		const response = await Http.get(`${baseUrl}/api/getButtonLayouts`);
 
@@ -372,7 +386,7 @@ async function getButtonLayouts(setLoading) {
 	}
 }
 
-async function getButtonLayoutDefs(setLoading) {
+async function getButtonLayoutDefs() {
 	try {
 		const response = await Http.get(`${baseUrl}/api/getButtonLayoutDefs`);
 
@@ -673,7 +687,7 @@ function sanitizeRequest(request) {
 	return newRequest;
 }
 
-const WebApi = {
+export default {
 	resetSettings,
 	getDisplayOptions,
 	setDisplayOptions,
@@ -711,5 +725,3 @@ const WebApi = {
 	abortGetHeldPins,
 	reboot,
 };
-
-export default WebApi;
