@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../Contexts/AppContext';
 import {
 	Badge,
@@ -14,12 +14,16 @@ import {
 } from 'react-bootstrap';
 import { Formik, useFormikContext } from 'formik';
 import * as yup from 'yup';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import omit from 'lodash/omit';
 
 import Section from '../Components/Section';
 import WebApi from '../Services/WebApi';
-import { getButtonLabels, BUTTONS, BUTTON_MASKS } from '../Data/Buttons';
+import {
+	getButtonLabels,
+	BUTTONS,
+	BUTTON_MASKS_OPTIONS,
+} from '../Data/Buttons';
 
 const MACRO_TYPES = [
 	{ label: 'InputMacroAddon:input-macro-type.press', value: 1 },
@@ -181,7 +185,7 @@ const MacroInputComponent = (props) => {
 			</Col>
 			<Col sm={'auto'}>
 				<Row className="d-flex justify-content-center">
-					{BUTTON_MASKS.filter((mask) => buttonMask & mask.value).map(
+					{BUTTON_MASKS_OPTIONS.filter((mask) => buttonMask & mask.value).map(
 						(mask, i1) => (
 							<Col
 								key={`${key}.buttonMask[${i1}]`}
@@ -201,7 +205,7 @@ const MacroInputComponent = (props) => {
 									isInvalid={errors?.buttonMask}
 									translation={t}
 									buttonLabelType={buttonLabelType}
-									buttonMasks={BUTTON_MASKS}
+									buttonMasks={BUTTON_MASKS_OPTIONS}
 								/>
 							</Col>
 						),
@@ -218,7 +222,7 @@ const MacroInputComponent = (props) => {
 							isInvalid={errors?.buttonMask}
 							translation={t}
 							buttonLabelType={buttonLabelType}
-							buttonMasks={BUTTON_MASKS}
+							buttonMasks={BUTTON_MASKS_OPTIONS}
 						/>
 					</Col>
 				</Row>
@@ -231,7 +235,7 @@ const MacroInputComponent = (props) => {
 				className="d-flex justify-content-center text-nowrap"
 			>
 				{' '}
-				release and wait{' '}
+				{t('InputMacroAddon:input-macro-release-and-wait-label')}{' '}
 			</Col>
 			<Col
 				style={{
@@ -330,7 +334,7 @@ const MacroComponent = (props) => {
 				</Col>
 			</Row>
 			<Row className="my-2">
-				<Col sm={'auto'}>Macro Name:</Col>
+				<Col sm={'auto'}>{t('InputMacroAddon:macro-name')}:</Col>
 				<Col sm={'auto'}>
 					<Form.Control
 						size="sm"
@@ -347,7 +351,7 @@ const MacroComponent = (props) => {
 			</Row>
 			<Row className="my-2">
 				<Col sm={'auto'} mb={2}>
-					Macro Activation Type:
+					{t('InputMacroAddon:macro-activation-type')}:
 				</Col>
 				<Col sm={'auto'}>
 					<Form.Select
@@ -433,7 +437,7 @@ const MacroComponent = (props) => {
 								}}
 								buttonLabelType={buttonLabelType}
 								translation={t}
-								buttonMasks={BUTTON_MASKS.filter(
+								buttonMasks={BUTTON_MASKS_OPTIONS.filter(
 									(b, i) =>
 										macroList.find(
 											(m, macroIdx) =>
@@ -492,7 +496,10 @@ const MacroComponent = (props) => {
 								});
 							}}
 						>
-							Add Input +
+							<Trans
+								ns="InputMacroAddon"
+								i18nKey="input-macro-add-input-label"
+							/>
 						</Button>
 					) : (
 						<></>
@@ -621,7 +628,7 @@ export default function MacrosPage() {
 																			</td>
 																		) : (
 																			<td>{`${
-																				BUTTON_MASKS.find(
+																				BUTTON_MASKS_OPTIONS.find(
 																					(b) =>
 																						b.value == macro.macroTriggerButton,
 																				).label
@@ -630,9 +637,9 @@ export default function MacrosPage() {
 																		<td>{macro.macroInputs.length}</td>
 																		<td>
 																			{macro.enabled == true ? (
-																				<Badge bg="success">Enabled</Badge>
+																				<Badge bg="success">{t('InputMacroAddon:input-macro-macro-enabled-badge')}</Badge>
 																			) : (
-																				<Badge bg="danger">Disabled</Badge>
+																				<Badge bg="danger">{t('InputMacroAddon:input-macro-macro-disabled-badge')}</Badge>
 																			)}
 																		</td>
 																	</tr>
