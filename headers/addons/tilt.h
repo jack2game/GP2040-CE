@@ -191,49 +191,53 @@ private:
 	void debounce();
 	void SOCDTiltClean(SOCDMode, SOCDMode);
 	void OverrideGamepad(Gamepad*, uint8_t, uint8_t);
-	uint8_t tiltLeftState;		  // Tilt State
-	uint8_t tiltRightState;		  // Tilt Right Analog State
+    uint16_t getAnalogValue(bool isMin, bool isMax);
+	uint8_t tiltLeftState;          // Tilt State
+	uint8_t tiltRightState;          // Tilt Right Analog State
+	// DpadDirection lastGPUD; // Gamepad Last Up-Down
+	// DpadDirection lastGPLR; // Gamepad Last Left-Right
 	DpadDirection leftLastTiltUD; // Tilt Last Up-Down
 	DpadDirection leftLastTiltLR; // Gamepad Last Left-Right
 	DpadDirection rightLastTiltUD; // Tilt Last Up-Down
 	DpadDirection rightLastTiltLR; // Gamepad Last Left-Right
 	uint32_t dpadTime[4];
-	uint8_t pinTilt1;
 	uint8_t tilt1FactorLeftX;
-	uint8_t tilt1FactorLeftY;
-	uint8_t tilt1FactorRightX;
-	uint8_t tilt1FactorRightY;
-	uint8_t pinTilt2;
-	uint8_t tilt2FactorLeftX;
-	uint8_t tilt2FactorLeftY;
-	uint8_t tilt2FactorRightX;
-	uint8_t tilt2FactorRightY;
-	uint8_t tilt3FactorLeftX;
-	uint8_t tilt3FactorLeftY;
-	uint8_t tilt3FactorRightX;
-	uint8_t tilt3FactorRightY;
-	uint8_t tilt4FactorLeftX;
-	uint8_t tilt4FactorLeftY;
-	uint8_t tilt4FactorRightX;
-	uint8_t tilt4FactorRightY;
-	uint8_t pinTiltLeftAnalogDown;
-	uint8_t pinTiltLeftAnalogUp;
-	uint8_t pinTiltLeftAnalogLeft;
-	uint8_t pinTiltLeftAnalogRight;
-	uint8_t pinTiltRightAnalogDown;
-	uint8_t pinTiltRightAnalogUp;
-	uint8_t pinTiltRightAnalogLeft;
-	uint8_t pinTiltRightAnalogRight;
-	uint8_t pinRotate1;
-	uint8_t pinRotate2;
-	uint16_t rotate1FactorLeft;
-	uint16_t rotate2FactorLeft;
-	uint16_t rotate3FactorLeft;
-	uint16_t rotate4FactorLeft;
-	uint16_t rotate1FactorRight;
-	uint16_t rotate2FactorRight;
-	uint16_t rotate3FactorRight;
-	uint16_t rotate4FactorRight;
+    uint8_t tilt1FactorLeftY;
+    uint8_t tilt1FactorRightX;
+    uint8_t tilt1FactorRightY;
+    uint8_t tilt2FactorLeftX;
+    uint8_t tilt2FactorLeftY;
+    uint8_t tilt2FactorRightX;
+    uint8_t tilt2FactorRightY;
+    uint8_t tilt3FactorLeftX;
+    uint8_t tilt3FactorLeftY;
+    uint8_t tilt3FactorRightX;
+    uint8_t tilt3FactorRightY;
+    uint8_t tilt4FactorLeftX;
+    uint8_t tilt4FactorLeftY;
+    uint8_t tilt4FactorRightX;
+    uint8_t tilt4FactorRightY;
+    uint16_t rotate1FactorLeft;
+    uint16_t rotate2FactorLeft;
+    uint16_t rotate3FactorLeft;
+    uint16_t rotate4FactorLeft;
+    uint16_t rotate1FactorRight;
+    uint16_t rotate2FactorRight;
+    uint16_t rotate3FactorRight;
+    uint16_t rotate4FactorRight;
+	SOCDMode tiltSOCDMode;
+	GamepadButtonMapping *mapAnalogLSXNeg;
+	GamepadButtonMapping *mapAnalogLSXPos;
+	GamepadButtonMapping *mapAnalogLSYNeg;
+	GamepadButtonMapping *mapAnalogLSYPos;
+	GamepadButtonMapping *mapAnalogRSXNeg;
+	GamepadButtonMapping *mapAnalogRSXPos;
+	GamepadButtonMapping *mapAnalogRSYNeg;
+	GamepadButtonMapping *mapAnalogRSYPos;
+	GamepadButtonMapping *mapAnalogModOne;
+	GamepadButtonMapping *mapAnalogModTwo;
+	GamepadButtonMapping *mapAnalogRotateOne;
+	GamepadButtonMapping *mapAnalogRotateTwo;
 	SOCDMode tiltLeftSOCDMode;
 	SOCDMode tiltRightSOCDMode;
 	DpadMode tilt1Then2Mode;
@@ -242,6 +246,18 @@ private:
 	DpadMode rotate2Then1Mode;
 	bool last1button;
 	bool last2button;
+	// uint8_t pinTilt1;
+	// uint8_t pinTilt2;
+	// uint8_t pinTiltLeftAnalogDown;
+	// uint8_t pinTiltLeftAnalogUp;
+	// uint8_t pinTiltLeftAnalogLeft;
+	// uint8_t pinTiltLeftAnalogRight;
+	// uint8_t pinTiltRightAnalogDown;
+	// uint8_t pinTiltRightAnalogUp;
+	// uint8_t pinTiltRightAnalogLeft;
+	// uint8_t pinTiltRightAnalogRight;
+	// uint8_t pinRotate1;
+	// uint8_t pinRotate2;
 };
 
 #endif  // _Tilt_H
