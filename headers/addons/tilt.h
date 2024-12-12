@@ -246,18 +246,6 @@ private:
 	DpadMode rotate2Then1Mode;
 	bool last1button;
 	bool last2button;
-	// uint8_t pinTilt1;
-	// uint8_t pinTilt2;
-	// uint8_t pinTiltLeftAnalogDown;
-	// uint8_t pinTiltLeftAnalogUp;
-	// uint8_t pinTiltLeftAnalogLeft;
-	// uint8_t pinTiltLeftAnalogRight;
-	// uint8_t pinTiltRightAnalogDown;
-	// uint8_t pinTiltRightAnalogUp;
-	// uint8_t pinTiltRightAnalogLeft;
-	// uint8_t pinTiltRightAnalogRight;
-	// uint8_t pinRotate1;
-	// uint8_t pinRotate2;
 };
 
 #endif  // _Tilt_H
