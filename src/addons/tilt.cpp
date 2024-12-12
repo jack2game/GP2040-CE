@@ -112,7 +112,7 @@ void TiltInput::preprocess()
 		| ((values & mapAnalogLSYNeg->pinMask)    ? mapAnalogLSYNeg->buttonMask : 0)
 		| ((values & mapAnalogLSYPos->pinMask)    ? mapAnalogLSYPos->buttonMask : 0);
 
-	if (tiltLeftState == 0 && sliderLeft){
+	if (tiltLeftState == 0 && sliderLeft && !sliderRight){
 		tiltLeftState |= gamepad->state.dpad;
 	}
 
@@ -122,7 +122,7 @@ void TiltInput::preprocess()
 		| ((values & mapAnalogRSYNeg->pinMask)    ? mapAnalogRSYNeg->buttonMask : 0)
 		| ((values & mapAnalogRSYPos->pinMask)    ? mapAnalogRSYPos->buttonMask : 0);
 
-	if (tiltRightState == 0 && sliderRight){
+	if (tiltRightState == 0 && sliderRight && !sliderLeft){
 		tiltRightState |= gamepad->state.dpad;
 	}
 
@@ -181,11 +181,6 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 	if ( DriverManager::getInstance().getDriver() != nullptr ) {
 		midValue = DriverManager::getInstance().getDriver()->GetJoystickMidValue();
 	}
-
-	uint16_t leftXValue = midValue;
-	uint16_t leftYValue = midValue;
-	uint16_t rightXValue = midValue;
-	uint16_t rightYValue = midValue;
 
 	// (Tilt1+Tilt2) = Selected Mode
 	if (pinTilt1Pressed && pinTilt2Pressed && !pinRotate1Pressed && !pinRotate2Pressed) {
