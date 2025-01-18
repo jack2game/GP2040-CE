@@ -294,20 +294,174 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 	else if (pinTilt1Pressed && !pinTilt2Pressed && !pinRotate1Pressed && !pinRotate2Pressed) {
 		last1button = true;
 		last2button = false;
-		gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt1FactorLeftX;
-		gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt1FactorLeftY;
-		gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt1FactorRightX;
-		gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt1FactorRightY;
+		// gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt1FactorLeftX;
+		// gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt1FactorLeftY;
+		// gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt1FactorRightX;
+		// gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt1FactorRightY;
+		switch (tiltLeftState) {
+		case (GAMEPAD_MASK_UP):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt1FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt1FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt1FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt1FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt1FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt1FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt1FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt1FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt1FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt1FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt1FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt1FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt1FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt1FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt1FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt1FactorLeftY);
+			break;
+		default:
+			gamepad->state.lx = dpadToAnalogX(dpad1);
+			gamepad->state.ly = dpadToAnalogY(dpad1);
+			break;
+		}
+
+		switch (tiltRightState) {
+		case (GAMEPAD_MASK_UP):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt1FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt1FactorRightY);
+			break;
+		case (GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt1FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt1FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt1FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt1FactorRightY);
+			break;
+		case (GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt1FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt1FactorRightY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt1FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt1FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt1FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt1FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt1FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt1FactorRightY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt1FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt1FactorRightY);
+			break;
+		default:
+			gamepad->state.rx = dpadToAnalogX(dpad2);
+			gamepad->state.ry = dpadToAnalogY(dpad2);
+			break;
+		}
 	}
 
 	// Tilt2
 	else if (!pinTilt1Pressed && pinTilt2Pressed && !pinRotate1Pressed && !pinRotate2Pressed) {
 		last1button = false;
 		last2button = true;
-		gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt2FactorLeftX;
-		gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt2FactorLeftY;
-		gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt2FactorRightX;
-		gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt2FactorRightY;
+		// gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt2FactorLeftX;
+		// gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt2FactorLeftY;
+		// gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt2FactorRightX;
+		// gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt2FactorRightY;
+		switch (tiltLeftState) {
+		case (GAMEPAD_MASK_UP):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt2FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt2FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt2FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt2FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt2FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt2FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt2FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt2FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt2FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt2FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt2FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt2FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt2FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt2FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt2FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt2FactorLeftY);
+			break;
+		default:
+			gamepad->state.lx = dpadToAnalogX(dpad1);
+			gamepad->state.ly = dpadToAnalogY(dpad1);
+			break;
+		}
+
+		switch (tiltRightState) {
+		case (GAMEPAD_MASK_UP):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt2FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt2FactorRightY);
+			break;
+		case (GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt2FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt2FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt2FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt2FactorRightY);
+			break;
+		case (GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt2FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt2FactorRightY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt2FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt2FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt2FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt2FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt2FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt2FactorRightY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt2FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt2FactorRightY);
+			break;
+		default:
+			gamepad->state.rx = dpadToAnalogX(dpad2);
+			gamepad->state.ry = dpadToAnalogY(dpad2);
+			break;
+		}
 	}
 
 	// Rotate1
@@ -480,20 +634,174 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 	else if (pinTilt1Pressed && !pinTilt2Pressed && pinRotate1Pressed && pinRotate2Pressed) {
 		last1button = false;
 		last2button = false;
-		gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt3FactorLeftX;
-		gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt3FactorLeftY;
-		gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt3FactorRightX;
-		gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt3FactorRightY;
+		// gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt3FactorLeftX;
+		// gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt3FactorLeftY;
+		// gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt3FactorRightX;
+		// gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt3FactorRightY;
+		switch (tiltLeftState) {
+		case (GAMEPAD_MASK_UP):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt3FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt3FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt3FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt3FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt3FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt3FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt3FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt3FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt3FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt3FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt3FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt3FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt3FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt3FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt3FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt3FactorLeftY);
+			break;
+		default:
+			gamepad->state.lx = dpadToAnalogX(dpad1);
+			gamepad->state.ly = dpadToAnalogY(dpad1);
+			break;
+		}
+
+		switch (tiltRightState) {
+		case (GAMEPAD_MASK_UP):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt3FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt3FactorRightY);
+			break;
+		case (GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt3FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt3FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt3FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt3FactorRightY);
+			break;
+		case (GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt3FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt3FactorRightY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt3FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt3FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt3FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt3FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt3FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt3FactorRightY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt3FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt3FactorRightY);
+			break;
+		default:
+			gamepad->state.rx = dpadToAnalogX(dpad2);
+			gamepad->state.ry = dpadToAnalogY(dpad2);
+			break;
+		}
 	}
 
 	// Tilt2 + Rotate1 + Rotate 2 = Tilt4
 	else if (!pinTilt1Pressed && pinTilt2Pressed && pinRotate1Pressed && pinRotate2Pressed) {
 		last1button = false;
 		last2button = false;
-		gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt4FactorLeftX;
-		gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt4FactorLeftY;
-		gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt4FactorRightX;
-		gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt4FactorRightY;
+		// gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt4FactorLeftX;
+		// gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt4FactorLeftY;
+		// gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt4FactorRightX;
+		// gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt4FactorRightY;
+		switch (tiltLeftState) {
+		case (GAMEPAD_MASK_UP):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt4FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt4FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt4FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt4FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt4FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt4FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt4FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt4FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt4FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt4FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_RIGHT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt4FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt4FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt4FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt4FactorLeftY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_LEFT):
+			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt4FactorLeftX);
+			gamepad->state.ly = midValue - midValue * cos(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt4FactorLeftY);
+			break;
+		default:
+			gamepad->state.lx = dpadToAnalogX(dpad1);
+			gamepad->state.ly = dpadToAnalogY(dpad1);
+			break;
+		}
+
+		switch (tiltRightState) {
+		case (GAMEPAD_MASK_UP):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt4FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt4FactorRightY);
+			break;
+		case (GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt4FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/2) * (1-scaledTilt4FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt4FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*2/2) * (1-scaledTilt4FactorRightY);
+			break;
+		case (GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt4FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/2) * (1-scaledTilt4FactorRightY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt4FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*1/4) * (1-scaledTilt4FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_RIGHT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt4FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*3/4) * (1-scaledTilt4FactorRightY);
+			break;
+		case (GAMEPAD_MASK_DOWN | GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt4FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*5/4) * (1-scaledTilt4FactorRightY);
+			break;
+		case (GAMEPAD_MASK_UP | GAMEPAD_MASK_LEFT):
+			gamepad->state.rx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt4FactorRightX);
+			gamepad->state.ry = midValue - midValue * cos(0 / 180 * M_PI + M_PI*7/4) * (1-scaledTilt4FactorRightY);
+			break;
+		default:
+			gamepad->state.rx = dpadToAnalogX(dpad2);
+			gamepad->state.ry = dpadToAnalogY(dpad2);
+			break;
+		}
 	}
 
 	// Tilt1 + Tilt2 + Rotate1 = Rotate3
