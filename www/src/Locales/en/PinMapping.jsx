@@ -98,6 +98,7 @@ export default {
 		ANALOG_DIRECTION_MOD_TWO: 'Analog Stick Mod Tilt 2',
 		BUTTON_PRESS_INPUT_REVERSE: 'Reverse Input',
 		SUSTAIN_FOCUS_MODE: 'Focus Mode Enable',
+		SUSTAIN_4_8_WAY_MODE: 'Toggle 4-Way Mode',
 		ANALOG_DIRECTION_ROTATE_ONE: 'Analog Stick Mod Rotate 1',
 		ANALOG_DIRECTION_ROTATE_TWO: 'Analog Stick Mod Rotate 2',
 	},
