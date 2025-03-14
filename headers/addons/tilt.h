@@ -182,26 +182,30 @@
 
 class TiltInput : public GPAddon {
 public:
-	virtual bool available();
-	virtual void setup();	   // Tilt Setup
-	virtual void process();	 // Tilt Process
-	virtual void preprocess();  // Tilt Pre-Process (Cheat)
-	virtual std::string name() { return TiltName; }
+    virtual bool available();
+    virtual void setup();       // Tilt Setup
+    virtual void process();     // Tilt Process
+    virtual void preprocess();  // Tilt Pre-Process (Cheat)
+    virtual void postprocess(bool sent) {}
+    virtual void reinit() {}
+    virtual std::string name() { return TiltName; }
 private:
-	void debounce();
-	void SOCDTiltClean(SOCDMode, SOCDMode);
-	void OverrideGamepad(Gamepad*, uint8_t, uint8_t);
+    void debounce();
+    void SOCDTiltClean(SOCDMode, SOCDMode);
+    uint8_t SOCDCombine(SOCDMode, uint8_t);
+    uint8_t SOCDGamepadClean(uint8_t);
+    void OverrideGamepad(Gamepad*, uint8_t, uint8_t);
     uint16_t getAnalogValue(bool isMin, bool isMax);
-	uint8_t tiltLeftState;          // Tilt State
-	uint8_t tiltRightState;          // Tilt Right Analog State
-	// DpadDirection lastGPUD; // Gamepad Last Up-Down
-	// DpadDirection lastGPLR; // Gamepad Last Left-Right
-	DpadDirection leftLastTiltUD; // Tilt Last Up-Down
-	DpadDirection leftLastTiltLR; // Gamepad Last Left-Right
-	DpadDirection rightLastTiltUD; // Tilt Last Up-Down
-	DpadDirection rightLastTiltLR; // Gamepad Last Left-Right
-	uint32_t dpadTime[4];
-	uint8_t tilt1FactorLeftX;
+    uint8_t tiltLeftState;          // Tilt State
+    uint8_t tiltRightState;          // Tilt Right Analog State
+    // DpadDirection lastGPUD; // Gamepad Last Up-Down
+    // DpadDirection lastGPLR; // Gamepad Last Left-Right
+    DpadDirection leftLastTiltUD; // Tilt Last Up-Down
+    DpadDirection leftLastTiltLR; // Gamepad Last Left-Right
+    DpadDirection rightLastTiltUD; // Tilt Last Up-Down
+    DpadDirection rightLastTiltLR; // Gamepad Last Left-Right
+    uint32_t dpadTime[4];
+    uint8_t tilt1FactorLeftX;
     uint8_t tilt1FactorLeftY;
     uint8_t tilt1FactorRightX;
     uint8_t tilt1FactorRightY;
@@ -225,27 +229,27 @@ private:
     uint16_t rotate2FactorRight;
     uint16_t rotate3FactorRight;
     uint16_t rotate4FactorRight;
-	SOCDMode tiltSOCDMode;
-	GamepadButtonMapping *mapAnalogLSXNeg;
-	GamepadButtonMapping *mapAnalogLSXPos;
-	GamepadButtonMapping *mapAnalogLSYNeg;
-	GamepadButtonMapping *mapAnalogLSYPos;
-	GamepadButtonMapping *mapAnalogRSXNeg;
-	GamepadButtonMapping *mapAnalogRSXPos;
-	GamepadButtonMapping *mapAnalogRSYNeg;
-	GamepadButtonMapping *mapAnalogRSYPos;
-	GamepadButtonMapping *mapAnalogModOne;
-	GamepadButtonMapping *mapAnalogModTwo;
-	GamepadButtonMapping *mapAnalogRotateOne;
-	GamepadButtonMapping *mapAnalogRotateTwo;
-	SOCDMode tiltLeftSOCDMode;
-	SOCDMode tiltRightSOCDMode;
-	DpadMode tilt1Then2Mode;
-	DpadMode tilt2Then1Mode;
-	DpadMode rotate1Then2Mode;
-	DpadMode rotate2Then1Mode;
-	bool last1button;
-	bool last2button;
+    SOCDMode tiltSOCDMode;
+    GamepadButtonMapping *mapAnalogLSXNeg;
+    GamepadButtonMapping *mapAnalogLSXPos;
+    GamepadButtonMapping *mapAnalogLSYNeg;
+    GamepadButtonMapping *mapAnalogLSYPos;
+    GamepadButtonMapping *mapAnalogRSXNeg;
+    GamepadButtonMapping *mapAnalogRSXPos;
+    GamepadButtonMapping *mapAnalogRSYNeg;
+    GamepadButtonMapping *mapAnalogRSYPos;
+    GamepadButtonMapping *mapAnalogModOne;
+    GamepadButtonMapping *mapAnalogModTwo;
+    GamepadButtonMapping *mapAnalogRotateOne;
+    GamepadButtonMapping *mapAnalogRotateTwo;
+    SOCDMode tiltLeftSOCDMode;
+    SOCDMode tiltRightSOCDMode;
+    DpadMode tilt1Then2Mode;
+    DpadMode tilt2Then1Mode;
+    DpadMode rotate1Then2Mode;
+    DpadMode rotate2Then1Mode;
+    bool last1button;
+    bool last2button;
 };
 
 #endif  // _Tilt_H
