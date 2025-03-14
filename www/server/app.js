@@ -502,7 +502,6 @@ app.get('/api/getAddonsOptions', (req, res) => {
 		focusModePin: -1,
 		focusModeButtonLockMask: 0,
 		focusModeButtonLockEnabled: 0,
-		playerNumber: 1,
 		shmupMode: 0,
 		shmupMixMode: 0,
 		shmupAlwaysOn1: 0,
