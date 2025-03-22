@@ -4,7 +4,7 @@
 #include "GPGFX_UI_widgets.h"
 #include "GPGFX_UI_types.h"
 #include "enums.pb.h"
-#include "AnimationStation.hpp"
+#include "animationstation.h"
 #include "eventmanager.h"
 
 #define INPUT_MODE_XINPUT_NAME "XInput"
@@ -152,7 +152,7 @@ class MainMenuScreen : public GPScreen {
             {"Profile",    NULL, &profilesMenu,  std::bind(&MainMenuScreen::modeValue, this), std::bind(&MainMenuScreen::testMenu, this)},
             {"Focus Mode", NULL, &focusModeMenu, std::bind(&MainMenuScreen::modeValue, this), std::bind(&MainMenuScreen::testMenu, this)},
             {"Turbo",      NULL, &turboModeMenu, std::bind(&MainMenuScreen::modeValue, this), std::bind(&MainMenuScreen::testMenu, this)},
-            {"Exit",NULL, &saveMenu,      std::bind(&MainMenuScreen::modeValue, this), std::bind(&MainMenuScreen::testMenu, this)},
+            {"Exit",       NULL, &saveMenu,      std::bind(&MainMenuScreen::modeValue, this), std::bind(&MainMenuScreen::testMenu, this)},
         };
 
         std::vector<MenuEntry> saveMenu = {
