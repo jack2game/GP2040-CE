@@ -12,37 +12,15 @@ bool TiltInput::available() {
 
 void TiltInput::setup() {
 	const TiltOptions& options = Storage::getInstance().getAddonOptions().tiltOptions;
+
 	tiltLeftSOCDMode = options.tiltLeftSOCDMode;
 	tiltRightSOCDMode = options.tiltRightSOCDMode;
 
-	tilt1FactorLeftX = options.factorTilt1LeftX;
-	tilt1FactorLeftY = options.factorTilt1LeftY;
-	tilt1FactorRightX = options.factorTilt1RightX;
-	tilt1FactorRightY = options.factorTilt1RightY;
-	tilt2FactorLeftX = options.factorTilt2LeftX;
-	tilt2FactorLeftY = options.factorTilt2LeftY;
-	tilt2FactorRightX = options.factorTilt2RightX;
-	tilt2FactorRightY = options.factorTilt2RightY;
-	tilt3FactorLeftX = options.factorTilt3LeftX;
-	tilt3FactorLeftY = options.factorTilt3LeftY;
-	tilt3FactorRightX = options.factorTilt3RightX;
-	tilt3FactorRightY = options.factorTilt3RightY;
-	tilt4FactorLeftX = options.factorTilt4LeftX;
-	tilt4FactorLeftY = options.factorTilt4LeftY;
-	tilt4FactorRightX = options.factorTilt4RightX;
-	tilt4FactorRightY = options.factorTilt4RightY;
-	rotate1FactorLeft = options.factorRotate1Left;
-	rotate2FactorLeft = options.factorRotate2Left;
-	rotate3FactorLeft = options.factorRotate3Left;
-	rotate4FactorLeft = options.factorRotate4Left;
-	rotate1FactorRight = options.factorRotate1Right;
-	rotate2FactorRight = options.factorRotate2Right;
-	rotate3FactorRight = options.factorRotate3Right;
-	rotate4FactorRight = options.factorRotate4Right;
 	tilt1Then2Mode = options.tilt1Then2Mode;
 	tilt2Then1Mode = options.tilt2Then1Mode;
 	rotate1Then2Mode = options.rotate1Then2Mode;
 	rotate2Then1Mode = options.rotate2Then1Mode;
+
 	mapAnalogLSXNeg = new GamepadButtonMapping(0);
 	mapAnalogLSXPos = new GamepadButtonMapping(0);
 	mapAnalogLSYNeg = new GamepadButtonMapping(0);
@@ -56,37 +34,9 @@ void TiltInput::setup() {
 	mapAnalogRotateOne = new GamepadButtonMapping(ANALOG_DIRECTION_ROTATE_ONE);
 	mapAnalogRotateTwo = new GamepadButtonMapping(ANALOG_DIRECTION_ROTATE_TWO);
 
-	GpioMappingInfo* pinMappings = Storage::getInstance().getProfilePinMappings();
-	for (Pin_t pin = 0; pin < (Pin_t)NUM_BANK0_GPIOS; pin++)
-	{
-		switch (pinMappings[pin].action) {
-			case GpioAction::ANALOG_DIRECTION_LS_X_NEG:	mapAnalogLSXNeg->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_LS_X_POS:	mapAnalogLSXPos->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_LS_Y_NEG:	mapAnalogLSYNeg->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_LS_Y_POS:	mapAnalogLSYPos->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_RS_X_NEG:	mapAnalogRSXNeg->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_RS_X_POS:	mapAnalogRSXPos->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_RS_Y_NEG:	mapAnalogRSYNeg->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_RS_Y_POS:	mapAnalogRSYPos->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_MOD_ONE:	mapAnalogModOne->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_MOD_TWO:	mapAnalogModTwo->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_ROTATE_ONE:	mapAnalogRotateOne->pinMask |= 1 << pin; break;
-			case GpioAction::ANALOG_DIRECTION_ROTATE_TWO:	mapAnalogRotateTwo->pinMask |= 1 << pin; break;
-			default:	break;
-		}
-	}
+	EventManager::getInstance().registerEventHandler(GP_EVENT_PROFILE_CHANGE, GPEVENT_CALLBACK(this->handleProfileChange(event)));
 
-	tiltLeftState = 0;
-	tiltRightState = 0;
-
-	leftLastTiltUD = DIRECTION_NONE;
-	leftLastTiltLR = DIRECTION_NONE;
-
-	rightLastTiltUD = DIRECTION_NONE;
-	rightLastTiltLR = DIRECTION_NONE;
-
-	last1button = false;
-	last2button = false;
+	reloadMappings();
 
 	uint32_t now = getMillis();
 	for (int i = 0; i < 4; i++) {
@@ -98,12 +48,12 @@ void TiltInput::preprocess()
 {
 	bool sliderLeft;
 	bool sliderRight;
-	
+
 	Gamepad* gamepad = Storage::getInstance().GetGamepad();
 	sliderLeft = gamepad->getOptions().dpadMode == DPAD_MODE_LEFT_ANALOG;
 	sliderRight = gamepad->getOptions().dpadMode == DPAD_MODE_RIGHT_ANALOG;
 
-    Mask_t values = Storage::getInstance().GetGamepad()->debouncedGpio;
+	Mask_t values = Storage::getInstance().GetGamepad()->debouncedGpio;
 
 	// Need to invert since we're using pullups
 	tiltLeftState = 0
@@ -134,12 +84,89 @@ void TiltInput::preprocess()
 
 void TiltInput::process()
 {
+	const TiltOptions& options = Storage::getInstance().getAddonOptions().tiltOptions;
+	
+	// don't process if no pins are bound. we can pause by disabling the addon, but pins are required.
+	if (!options.enabled || ((mapAnalogModOne->pinMask == 0) && (mapAnalogModTwo->pinMask == 0))) return;
+
 	SOCDTiltClean(tiltLeftSOCDMode, tiltRightSOCDMode);
 
 	Gamepad* gamepad = Storage::getInstance().GetGamepad();
 
 	// Set Tilt Output
 	OverrideGamepad(gamepad, tiltLeftState, tiltRightState);
+}
+
+void TiltInput::reloadMappings() {
+    const TiltOptions& options = Storage::getInstance().getAddonOptions().tiltOptions;
+
+	tilt1FactorLeftX = options.factorTilt1LeftX;
+	tilt1FactorLeftY = options.factorTilt1LeftY;
+	tilt1FactorRightX = options.factorTilt1RightX;
+	tilt1FactorRightY = options.factorTilt1RightY;
+	tilt2FactorLeftX = options.factorTilt2LeftX;
+	tilt2FactorLeftY = options.factorTilt2LeftY;
+	tilt2FactorRightX = options.factorTilt2RightX;
+	tilt2FactorRightY = options.factorTilt2RightY;
+	tilt3FactorLeftX = options.factorTilt3LeftX;
+	tilt3FactorLeftY = options.factorTilt3LeftY;
+	tilt3FactorRightX = options.factorTilt3RightX;
+	tilt3FactorRightY = options.factorTilt3RightY;
+	tilt4FactorLeftX = options.factorTilt4LeftX;
+	tilt4FactorLeftY = options.factorTilt4LeftY;
+	tilt4FactorRightX = options.factorTilt4RightX;
+	tilt4FactorRightY = options.factorTilt4RightY;
+	rotate1FactorLeft = options.factorRotate1Left;
+	rotate2FactorLeft = options.factorRotate2Left;
+	rotate3FactorLeft = options.factorRotate3Left;
+	rotate4FactorLeft = options.factorRotate4Left;
+	rotate1FactorRight = options.factorRotate1Right;
+	rotate2FactorRight = options.factorRotate2Right;
+	rotate3FactorRight = options.factorRotate3Right;
+	rotate4FactorRight = options.factorRotate4Right;
+
+	mapAnalogLSXNeg->pinMask  = 0;
+	mapAnalogLSXPos->pinMask  = 0;
+	mapAnalogLSYNeg->pinMask  = 0;
+	mapAnalogLSYPos->pinMask  = 0;
+	mapAnalogRSXNeg->pinMask  = 0;
+	mapAnalogRSXPos->pinMask  = 0;
+	mapAnalogRSYNeg->pinMask  = 0;
+	mapAnalogRSYPos->pinMask  = 0;
+	mapAnalogModOne->pinMask  = 0;
+	mapAnalogModTwo->pinMask = 0;
+
+	GpioMappingInfo* pinMappings = Storage::getInstance().getProfilePinMappings();
+	for (Pin_t pin = 0; pin < (Pin_t)NUM_BANK0_GPIOS; pin++)
+	{
+		switch (pinMappings[pin].action) {
+			case GpioAction::ANALOG_DIRECTION_LS_X_NEG:	mapAnalogLSXNeg->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_LS_X_POS:	mapAnalogLSXPos->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_LS_Y_NEG:	mapAnalogLSYNeg->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_LS_Y_POS:	mapAnalogLSYPos->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_RS_X_NEG:	mapAnalogRSXNeg->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_RS_X_POS:	mapAnalogRSXPos->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_RS_Y_NEG:	mapAnalogRSYNeg->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_RS_Y_POS:	mapAnalogRSYPos->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_MOD_ONE:	mapAnalogModOne->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_MOD_TWO:	mapAnalogModTwo->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_ROTATE_ONE:	mapAnalogRotateOne->pinMask |= 1 << pin; break;
+			case GpioAction::ANALOG_DIRECTION_ROTATE_TWO:	mapAnalogRotateTwo->pinMask |= 1 << pin; break;
+			default:	break;
+		}
+	}
+
+	tiltLeftState = 0;
+	tiltRightState = 0;
+
+	last1button = false;
+	last2button = false;
+
+	leftLastTiltUD = DIRECTION_NONE;
+	leftLastTiltLR = DIRECTION_NONE;
+
+	rightLastTiltUD = DIRECTION_NONE;
+	rightLastTiltLR = DIRECTION_NONE;
 }
 
 void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) {
@@ -1432,4 +1459,8 @@ void TiltInput::SOCDTiltClean(SOCDMode leftSOCDMode, SOCDMode rightSOCDMode) {
 		rightLastTiltLR = DIRECTION_NONE;
 		break;
 	}
+}
+
+void TiltInput::handleProfileChange(GPEvent* e) {
+	reloadMappings();
 }
