@@ -8,12 +8,16 @@
 #include "BoardConfig.h"
 #include "animationstorage.h"
 #include "FlashPROM.h"
+#include "drivermanager.h"
 #include "eventmanager.h"
 #include "peripheralmanager.h"
 #include "config.pb.h"
 #include "hardware/watchdog.h"
 #include "CRC32.h"
 #include "types.h"
+
+// Check for saves
+#include "ps4/PS4Driver.h"
 
 #include "config_utils.h"
 
@@ -35,11 +39,19 @@ bool Storage::save()
  * @brief Save the config; if forcing a save is requested, or if USB host is not enabled, this will write to flash.
  */
 bool Storage::save(const bool force) {
-	if (!PeripheralManager::getInstance().isUSBEnabled(0) || force) {
-		return ConfigUtils::save(config);
-	} else {
+	// Conditions for saving:
+	//   1. Force = True
+	//   2. Input Mode NOT (PS4/PS5 with USB enabled)
+	// Save will disconnect USB host, which is okay for gamepad and keyboard hosts
+	if (!force &&
+		PeripheralManager::getInstance().isUSBEnabled(0) &&
+		(DriverManager::getInstance().getInputMode() == INPUT_MODE_PS4 ||
+			DriverManager::getInstance().getInputMode() == INPUT_MODE_PS5) &&
+		((PS4Driver*)DriverManager::getInstance().getDriver())->getDongleAuthRequired() == true ) {
 		return false;
 	}
+
+	return ConfigUtils::save(config);
 }
 
 void Storage::ResetSettings()

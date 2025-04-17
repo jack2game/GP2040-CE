@@ -5,6 +5,8 @@
 
 #include "GamepadEnums.h"
 
+#include "eventmanager.h"
+
 #ifndef TILT_ENABLED
 #define TILT_ENABLED 0
 #endif
@@ -189,6 +191,8 @@ public:
     virtual void postprocess(bool sent) {}
     virtual void reinit() {}
     virtual std::string name() { return TiltName; }
+
+    void handleProfileChange(GPEvent* e);
 private:
     void debounce();
     void SOCDTiltClean(SOCDMode, SOCDMode);
@@ -229,7 +233,9 @@ private:
     uint16_t rotate2FactorRight;
     uint16_t rotate3FactorRight;
     uint16_t rotate4FactorRight;
-    SOCDMode tiltSOCDMode;
+    // SOCDMode tiltSOCDMode;
+    SOCDMode tiltLeftSOCDMode;
+    SOCDMode tiltRightSOCDMode;
     GamepadButtonMapping *mapAnalogLSXNeg;
     GamepadButtonMapping *mapAnalogLSXPos;
     GamepadButtonMapping *mapAnalogLSYNeg;
@@ -242,14 +248,13 @@ private:
     GamepadButtonMapping *mapAnalogModTwo;
     GamepadButtonMapping *mapAnalogRotateOne;
     GamepadButtonMapping *mapAnalogRotateTwo;
-    SOCDMode tiltLeftSOCDMode;
-    SOCDMode tiltRightSOCDMode;
     DpadMode tilt1Then2Mode;
     DpadMode tilt2Then1Mode;
     DpadMode rotate1Then2Mode;
     DpadMode rotate2Then1Mode;
     bool last1button;
     bool last2button;
+    void reloadMappings();
 };
 
 #endif  // _Tilt_H
