@@ -87,7 +87,7 @@ void TiltInput::process()
 	const TiltOptions& options = Storage::getInstance().getAddonOptions().tiltOptions;
 	
 	// don't process if no pins are bound. we can pause by disabling the addon, but pins are required.
-	if (!options.enabled || ((mapAnalogModOne->pinMask == 0) && (mapAnalogModTwo->pinMask == 0))) return;
+	if (!options.enabled || ((mapAnalogModOne->pinMask == 0) && (mapAnalogModTwo->pinMask == 0) && (mapAnalogRotateOne->pinMask == 0) && (mapAnalogRotateTwo->pinMask == 0))) return;
 
 	SOCDTiltClean(tiltLeftSOCDMode, tiltRightSOCDMode);
 
@@ -133,8 +133,10 @@ void TiltInput::reloadMappings() {
 	mapAnalogRSXPos->pinMask  = 0;
 	mapAnalogRSYNeg->pinMask  = 0;
 	mapAnalogRSYPos->pinMask  = 0;
-	mapAnalogModOne->pinMask  = 0;
-	mapAnalogModTwo->pinMask = 0;
+	// mapAnalogModOne->pinMask  = 0;
+	// mapAnalogModTwo->pinMask  = 0;
+	// mapAnalogRotateOne->pinMask  = 0;
+	// mapAnalogRotateTwo->pinMask  = 0;
 
 	GpioMappingInfo* pinMappings = Storage::getInstance().getProfilePinMappings();
 	for (Pin_t pin = 0; pin < (Pin_t)NUM_BANK0_GPIOS; pin++)
