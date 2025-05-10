@@ -194,7 +194,6 @@ public:
 
     void handleProfileChange(GPEvent* e);
 private:
-    void debounce();
     void SOCDTiltClean(SOCDMode, SOCDMode);
     uint8_t SOCDCombine(SOCDMode, uint8_t);
     uint8_t SOCDGamepadClean(uint8_t);
