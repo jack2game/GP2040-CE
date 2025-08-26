@@ -68,8 +68,8 @@ export default {
 	'ANALOG_DIRECTION_RS_X_POS': 'Right Analog Stick X+',
 	'ANALOG_DIRECTION_RS_Y_NEG': 'Right Analog Stick Y-',
 	'ANALOG_DIRECTION_RS_Y_POS': 'Right Analog Stick Y+',
-	'ANALOG_DIRECTION_MOD_LOW': 'Analog Stick Tilt 1',
-	'ANALOG_DIRECTION_MOD_HIGH': 'Analog Stick Tilt 2',
+	'ANALOG_DIRECTION_MOD_ONE': 'Analog Stick Tilt 1',
+	'ANALOG_DIRECTION_MOD_TWO': 'Analog Stick Tilt 2',
 	'BUTTON_PRESS_INPUT_REVERSE': 'Reverse Input',
 	'SUSTAIN_FOCUS_MODE': 'Focus Mode Enable',
 	'SUSTAIN_4_8_WAY_MODE': 'Toggle 4-Way Mode',
@@ -132,4 +132,6 @@ export default {
 	'MODE_WHEEL_PEDAL_GAS': 'Gas Pedal',
 	'MODE_WHEEL_PEDAL_BRAKE': 'Brake Pedal',
 	'MODE_WHEEL_PEDAL_CLUTCH': 'Clutch Pedal',
+	'ANALOG_DIRECTION_ROTATE_ONE': 'Rotate 1',
+	'ANALOG_DIRECTION_ROTATE_TWO': 'Rotate 2',
 };
