@@ -107,6 +107,7 @@ app.get('/api/getGamepadOptions', (req, res) => {
 	return res.send({
 		dpadMode: 0,
 		inputMode: 4,
+		inputDeviceType: 0,
 		socdMode: 2,
 		switchTpShareForDs4: 0,
 		forcedSetupMode: 0,
@@ -535,6 +536,8 @@ app.get('/api/getAddonsOptions', (req, res) => {
 		keyboardHostMouseLeft: 0,
 		keyboardHostMouseMiddle: 0,
 		keyboardHostMouseRight: 0,
+		keyboardHostMouseSensitivity: 50,
+		keyboardHostMouseMovement: 0,
 		AnalogInputEnabled: 1,
 		BoardLedAddonEnabled: 1,
 		FocusModeAddonEnabled: 1,
@@ -578,6 +581,13 @@ app.get('/api/getAddonsOptions', (req, res) => {
 		DRV8833RumbleAddonEnabled: 1,
 		ReactiveLEDAddonEnabled: 1,
 		GamepadUSBHostAddonEnabled: 1,
+		tg16PadOePin: -1,
+		tg16PadSelectPin: -1,
+		tg16PadDataPin0: -1,
+		tg16PadDataPin1: -1,
+		tg16PadDataPin2: -1,
+		tg16PadDataPin3: -1,
+		TG16padAddonEnabled: 1,
 		usedPins: Object.values(picoController),
 	});
 });
