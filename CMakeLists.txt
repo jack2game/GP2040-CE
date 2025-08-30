@@ -224,6 +224,7 @@ src/display/ui/screens/RestartScreen.cpp
 src/display/ui/screens/StatsScreen.cpp
 src/display/ui/screens/SplashScreen.cpp
 src/display/ui/screens/DisplaySaverScreen.cpp
+src/display/ui/screens/NoUSBDetectedScreen.cpp
 src/display/GPGFX.cpp
 src/display/GPGFX_UI.cpp
 src/drivermanager.cpp
@@ -241,6 +242,7 @@ src/addons/analog.cpp
 src/addons/board_led.cpp
 src/addons/bootsel_button.cpp
 src/addons/focus_mode.cpp
+src/addons/he_trigger.cpp
 src/addons/buzzerspeaker.cpp
 src/addons/dualdirectional.cpp
 src/addons/keyboard_host.cpp
