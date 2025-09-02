@@ -7,6 +7,7 @@ import FormSelect from '../Components/FormSelect';
 
 import FormControl from '../Components/FormControl';
 import { SOCD_MODES, TILT_SOCD_MODES } from '../Data/Addons';
+import { AddonPropTypes } from '../Pages/AddonsConfigPage';
 import { DPAD_MODES } from '../Data/Addons';
 
 export const tiltScheme = {
@@ -159,9 +160,15 @@ export const tiltState = {
 	factorRotate2Right: 345,
 	factorRotate3Right: 0,
 	factorRotate4Right: 0,
+	tiltLeftSOCDMode: 0,
+	tiltRightSOCDMode: 0,
+	tilt1Then2Mode: 0,
+	tilt2Then1Mode: 0,
+	rotate1Then2Mode: 0,
+	rotate2Then1Mode: 0,
 };
 
-const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
+const Tilt = ({ values, errors, handleChange, handleCheckbox }: AddonPropTypes) => {
 	const { t } = useTranslation();
 	return (
 		<Section title={
@@ -198,7 +205,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt1LeftX}
 						error={errors.factorTilt1LeftX}
-						isInvalid={errors.factorTilt1LeftX}
+						isInvalid={Boolean(errors.factorTilt1LeftX)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -211,7 +218,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt2LeftX}
 						error={errors.factorTilt2LeftX}
-						isInvalid={errors.factorTilt2LeftX}
+						isInvalid={Boolean(errors.factorTilt2LeftX)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -224,7 +231,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt3LeftX}
 						error={errors.factorTilt3LeftX}
-						isInvalid={errors.factorTilt3LeftX}
+						isInvalid={Boolean(errors.factorTilt3LeftX)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -237,7 +244,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt4LeftX}
 						error={errors.factorTilt4LeftX}
-						isInvalid={errors.factorTilt4LeftX}
+						isInvalid={Boolean(errors.factorTilt4LeftX)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -252,7 +259,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt1LeftY}
 						error={errors.factorTilt1LeftY}
-						isInvalid={errors.factorTilt1LeftY}
+						isInvalid={Boolean(errors.factorTilt1LeftY)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -265,7 +272,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt2LeftY}
 						error={errors.factorTilt2LeftY}
-						isInvalid={errors.factorTilt2LeftY}
+						isInvalid={Boolean(errors.factorTilt2LeftY)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -278,7 +285,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt3LeftY}
 						error={errors.factorTilt3LeftY}
-						isInvalid={errors.factorTilt3LeftY}
+						isInvalid={Boolean(errors.factorTilt3LeftY)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -291,7 +298,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt4LeftY}
 						error={errors.factorTilt4LeftY}
-						isInvalid={errors.factorTilt4LeftY}
+						isInvalid={Boolean(errors.factorTilt4LeftY)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -306,7 +313,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt1RightX}
 						error={errors.factorTilt1RightX}
-						isInvalid={errors.factorTilt1RightX}
+						isInvalid={Boolean(errors.factorTilt1RightX)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -319,7 +326,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt2RightX}
 						error={errors.factorTilt2RightX}
-						isInvalid={errors.factorTilt2RightX}
+						isInvalid={Boolean(errors.factorTilt2RightX)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -332,7 +339,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt3RightX}
 						error={errors.factorTilt3RightX}
-						isInvalid={errors.factorTilt3RightX}
+						isInvalid={Boolean(errors.factorTilt3RightX)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -345,7 +352,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt4RightX}
 						error={errors.factorTilt4RightX}
-						isInvalid={errors.factorTilt4RightX}
+						isInvalid={Boolean(errors.factorTilt4RightX)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -360,7 +367,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt1RightY}
 						error={errors.factorTilt1RightY}
-						isInvalid={errors.factorTilt1RightY}
+						isInvalid={Boolean(errors.factorTilt1RightY)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -373,7 +380,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt2RightY}
 						error={errors.factorTilt2RightY}
-						isInvalid={errors.factorTilt2RightY}
+						isInvalid={Boolean(errors.factorTilt2RightY)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -386,7 +393,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt3RightY}
 						error={errors.factorTilt3RightY}
-						isInvalid={errors.factorTilt3RightY}
+						isInvalid={Boolean(errors.factorTilt3RightY)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -399,7 +406,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorTilt4RightY}
 						error={errors.factorTilt4RightY}
-						isInvalid={errors.factorTilt4RightY}
+						isInvalid={Boolean(errors.factorTilt4RightY)}
 						onChange={handleChange}
 						min={0}
 						max={100}
@@ -414,7 +421,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorRotate1Left}
 						error={errors.factorRotate1Left}
-						isInvalid={errors.factorRotate1Left}
+						isInvalid={Boolean(errors.factorRotate1Left)}
 						onChange={handleChange}
 						min={0}
 						max={360}
@@ -427,7 +434,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorRotate2Left}
 						error={errors.factorRotate2Left}
-						isInvalid={errors.factorRotate2Left}
+						isInvalid={Boolean(errors.factorRotate2Left)}
 						onChange={handleChange}
 						min={0}
 						max={360}
@@ -440,7 +447,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorRotate3Left}
 						error={errors.factorRotate3Left}
-						isInvalid={errors.factorRotate3Left}
+						isInvalid={Boolean(errors.factorRotate3Left)}
 						onChange={handleChange}
 						min={0}
 						max={360}
@@ -453,7 +460,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorRotate4Left}
 						error={errors.factorRotate4Left}
-						isInvalid={errors.factorRotate4Left}
+						isInvalid={Boolean(errors.factorRotate4Left)}
 						onChange={handleChange}
 						min={0}
 						max={360}
@@ -468,7 +475,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorRotate1Right}
 						error={errors.factorRotate1Right}
-						isInvalid={errors.factorRotate1Right}
+						isInvalid={Boolean(errors.factorRotate1Right)}
 						onChange={handleChange}
 						min={0}
 						max={360}
@@ -481,7 +488,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorRotate2Right}
 						error={errors.factorRotate2Right}
-						isInvalid={errors.factorRotate2Right}
+						isInvalid={Boolean(errors.factorRotate2Right)}
 						onChange={handleChange}
 						min={0}
 						max={360}
@@ -494,7 +501,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorRotate3Right}
 						error={errors.factorRotate3Right}
-						isInvalid={errors.factorRotate3Right}
+						isInvalid={Boolean(errors.factorRotate3Right)}
 						onChange={handleChange}
 						min={0}
 						max={360}
@@ -507,7 +514,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.factorRotate4Right}
 						error={errors.factorRotate4Right}
-						isInvalid={errors.factorRotate4Right}
+						isInvalid={Boolean(errors.factorRotate4Right)}
 						onChange={handleChange}
 						min={0}
 						max={360}
@@ -521,7 +528,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.tilt1Then2Mode}
 						error={errors.tilt1Then2Mode}
-						isInvalid={errors.tilt1Then2Mode}
+						isInvalid={Boolean(errors.tilt1Then2Mode)}
 						onChange={handleChange}
 					>
 						{DPAD_MODES.map((o, i) => (
@@ -537,7 +544,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.tilt2Then1Mode}
 						error={errors.tilt2Then1Mode}
-						isInvalid={errors.tilt2Then1Mode}
+						isInvalid={Boolean(errors.tilt2Then1Mode)}
 						onChange={handleChange}
 					>
 						{DPAD_MODES.map((o, i) => (
@@ -553,7 +560,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.rotate1Then2Mode}
 						error={errors.rotate1Then2Mode}
-						isInvalid={errors.rotate1Then2Mode}
+						isInvalid={Boolean(errors.rotate1Then2Mode)}
 						onChange={handleChange}
 					>
 						{DPAD_MODES.map((o, i) => (
@@ -569,7 +576,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.rotate2Then1Mode}
 						error={errors.rotate2Then1Mode}
-						isInvalid={errors.rotate2Then1Mode}
+						isInvalid={Boolean(errors.rotate2Then1Mode)}
 						onChange={handleChange}
 					>
 						{DPAD_MODES.map((o, i) => (
@@ -585,7 +592,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.tiltLeftSOCDMode}
 						error={errors.tiltLeftSOCDMode}
-						isInvalid={errors.tiltLeftSOCDMode}
+						isInvalid={Boolean(errors.tiltLeftSOCDMode)}
 						onChange={handleChange}
 					>
 						{TILT_SOCD_MODES.map((o, i) => (
@@ -601,7 +608,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 						groupClassName="col-sm-2 mb-3"
 						value={values.tiltRightSOCDMode}
 						error={errors.tiltRightSOCDMode}
-						isInvalid={errors.tiltRightSOCDMode}
+						isInvalid={Boolean(errors.tiltRightSOCDMode)}
 						onChange={handleChange}
 					>
 						{TILT_SOCD_MODES.map((o, i) => (
@@ -620,7 +627,7 @@ const Tilt = ({ values, errors, handleChange, handleCheckbox }) => {
 				isInvalid={false}
 				checked={Boolean(values.TiltInputEnabled)}
 				onChange={(e) => {
-					handleCheckbox('TiltInputEnabled', values);
+					handleCheckbox('TiltInputEnabled');
 					handleChange(e);
 				}}
 			/>
