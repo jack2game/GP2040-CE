@@ -128,7 +128,7 @@
 #endif
 
 #ifndef ROTATE2_FACTOR_LEFT
-#define ROTATE2_FACTOR_LEFT 345
+#define ROTATE2_FACTOR_LEFT 0
 #endif
 
 #ifndef ROTATE3_FACTOR_LEFT
@@ -144,7 +144,7 @@
 #endif
 
 #ifndef ROTATE2_FACTOR_RIGHT
-#define ROTATE2_FACTOR_RIGHT 345
+#define ROTATE2_FACTOR_RIGHT 0
 #endif
 
 #ifndef ROTATE3_FACTOR_RIGHT
