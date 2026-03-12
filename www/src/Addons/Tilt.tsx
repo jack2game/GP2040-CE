@@ -78,35 +78,35 @@ export const tiltScheme = {
 		.validateRangeWhenValue('TiltInputEnabled', 0, 100),
 	factorRotate1Left: yup
 		.number()
-		.label('Rotate 1 Degree for Left Stick')
+		.label('Angle 1 Degree for Left Stick')
 		.validateNumberWhenValue('TiltInputEnabled', 0, 360),
 	factorRotate2Left: yup
 		.number()
-		.label('Rotate 2 Degree for Left Stick')
+		.label('Angle 2 Degree for Left Stick')
 		.validateNumberWhenValue('TiltInputEnabled', 0, 360),
 	factorRotate3Left: yup
 		.number()
-		.label('Rotate 3 Degree for Left Stick')
+		.label('Angle 3 Degree for Left Stick')
 		.validateNumberWhenValue('TiltInputEnabled', 0, 360),
 	factorRotate4Left: yup
 		.number()
-		.label('Rotate 4 Degree for Left Stick')
+		.label('Angle 4 Degree for Left Stick')
 		.validateNumberWhenValue('TiltInputEnabled', 0, 360),
 	factorRotate1Right: yup
 		.number()
-		.label('Rotate 1 Degree for Right Stick')
+		.label('Angle 1 Degree for Right Stick')
 		.validateNumberWhenValue('TiltInputEnabled', 0, 360),
 	factorRotate2Right: yup
 		.number()
-		.label('Rotate 2 Degree for Right Stick')
+		.label('Angle 2 Degree for Right Stick')
 		.validateNumberWhenValue('TiltInputEnabled', 0, 360),
 	factorRotate3Right: yup
 		.number()
-		.label('Rotate 3 Degree for Right Stick')
+		.label('Angle 3 Degree for Right Stick')
 		.validateNumberWhenValue('TiltInputEnabled', 0, 360),
 	factorRotate4Right: yup
 		.number()
-		.label('Rotate 4 Degree for Right Stick')
+		.label('Angle 4 Degree for Right Stick')
 		.validateNumberWhenValue('TiltInputEnabled', 0, 360),
 	tiltLeftSOCDMode: yup
 		.number()

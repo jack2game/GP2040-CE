@@ -323,10 +323,6 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 	else if (pinTilt1Pressed && !pinTilt2Pressed && !pinRotate1Pressed && !pinRotate2Pressed) {
 		last1button = true;
 		last2button = false;
-		// gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt1FactorLeftX;
-		// gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt1FactorLeftY;
-		// gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt1FactorRightX;
-		// gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt1FactorRightY;
 		switch (tiltLeftState) {
 		case (GAMEPAD_MASK_UP):
 			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt1FactorLeftX);
@@ -410,10 +406,6 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 	else if (!pinTilt1Pressed && pinTilt2Pressed && !pinRotate1Pressed && !pinRotate2Pressed) {
 		last1button = false;
 		last2button = true;
-		// gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt2FactorLeftX;
-		// gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt2FactorLeftY;
-		// gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt2FactorRightX;
-		// gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt2FactorRightY;
 		switch (tiltLeftState) {
 		case (GAMEPAD_MASK_UP):
 			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt2FactorLeftX);
@@ -663,10 +655,6 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 	else if (pinTilt1Pressed && !pinTilt2Pressed && pinRotate1Pressed && pinRotate2Pressed) {
 		last1button = false;
 		last2button = false;
-		// gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt3FactorLeftX;
-		// gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt3FactorLeftY;
-		// gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt3FactorRightX;
-		// gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt3FactorRightY;
 		switch (tiltLeftState) {
 		case (GAMEPAD_MASK_UP):
 			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt3FactorLeftX);
@@ -750,10 +738,6 @@ void TiltInput::OverrideGamepad(Gamepad* gamepad, uint8_t dpad1, uint8_t dpad2) 
 	else if (!pinTilt1Pressed && pinTilt2Pressed && pinRotate1Pressed && pinRotate2Pressed) {
 		last1button = false;
 		last2button = false;
-		// gamepad->state.lx = dpadToAnalogX(dpad1) + (midValue - dpadToAnalogX(dpad1)) * scaledTilt4FactorLeftX;
-		// gamepad->state.ly = dpadToAnalogY(dpad1) + (midValue - dpadToAnalogY(dpad1)) * scaledTilt4FactorLeftY;
-		// gamepad->state.rx = dpadToAnalogX(dpad2) + (midValue - dpadToAnalogX(dpad2)) * scaledTilt4FactorRightX;
-		// gamepad->state.ry = dpadToAnalogY(dpad2) + (midValue - dpadToAnalogY(dpad2)) * scaledTilt4FactorRightY;
 		switch (tiltLeftState) {
 		case (GAMEPAD_MASK_UP):
 			gamepad->state.lx = midValue + midValue * sin(0 / 180 * M_PI + M_PI*0/2) * (1-scaledTilt4FactorLeftX);
